@@ -49,14 +49,9 @@ const Nav = () => {
 
   return (
     <div
-      className={`z-20 shadow-md w-full fixed top-0 left-0 font-bold transition-colors duration-300 ${
-        scrolled
-          ? "bg-white"
-          : "bg-white"
+      className={`fixed z-20 shadow-md w-full top-0 left-0 font-bold transition-colors duration-300 ${
+        scrolled ? "bg-white" : "bg-white"
       }`}
-      initial={{ y: -250 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 120, duration: 0.5 }}
     >
       <div className="flex items-center justify-between p-4 md:px-8 lg:px-40">
         <Link to="/">
@@ -72,18 +67,11 @@ const Nav = () => {
 
       <ul
         className={`md:flex md:items-center flex justify-center items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
-          open ? "top-16 bg-black bg-opacity-80" : "top-[-490px]"
+          open ? "top-30 bg-white bg-opacity-80" : "top-[-490px]"
         }`}
-        variants={variants.list}
-        initial="closed"
-        animate={open ? "open" : "closed"}
       >
         {Links.map((link) => (
-          <li
-            key={link.name}
-            className="md:ml-8 text-xl md:my-0 my-7"
-            variants={variants.listItem}
-          >
+          <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
             <Link
               to={link.link}
               className={`${
@@ -93,7 +81,6 @@ const Nav = () => {
             >
               {link.name}
             </Link>
-
           </li>
         ))}
       </ul>

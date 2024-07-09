@@ -4,6 +4,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navbar from "./Components/Nav";
 import HomePage from "./Pages/HomePage";
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme';
+import { ThemeProvider } from '@mui/material/styles';
 
 const AppLayout = () => {
   return (
@@ -20,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage/>,
+        element: <HomePage />,
       },
     ],
   },
@@ -28,6 +31,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );
