@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Navbar from "./Components/Nav";
+import Navbar from "./Components/NavigasiBar/Nav";
 import HomePage from "./Pages/HomePage";
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';

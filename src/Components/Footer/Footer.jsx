@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import ListMenuFooter from "./ListMenuFooter";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
+import MapKominfo from "../MapKominfo";
 
 const Footer = () => {
   return (
@@ -11,14 +12,10 @@ const Footer = () => {
         width: "100%",
         bgcolor: "footer.main",
         color: "white",
-        textAlign: "center",
-        py: 2,
-        mt: "auto",
-        boxShadow: 2,
       }}
     >
-      <div className="px-16 grid grid-cols-2 gap-8">
-        <div className="flex justify-center items-center">
+      <div className="px-8 flex flex-row justify-center items-center">
+        <div className="flex justify-center items-center w-2/5 bg-yellow-300">
           <img src="/TPI-Logo.png" className="w-40 h-auto p-4" />
           <div className="flex flex-col">
             <Typography variant="fontH2" lineHeight={1} className="text-start">
@@ -43,10 +40,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-3">
+        <div className="flex justify-center items-center bg-red-300 w-3/5">
           <ListMenuFooter />
           <ListMenuFooter />
-          <ListMenuFooter />
+          <MapKominfo/>
         </div>
       </div>
     </Box>

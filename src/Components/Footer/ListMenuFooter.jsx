@@ -11,7 +11,7 @@ const ListMenuFooter = () => {
   ];
 
   return (
-    <List>
+    <List className="bg-blue-400">
       <Typography
         variant="h6"
         className="text-start underline underline-offset-8 decoration-4 decoration-orange-500"

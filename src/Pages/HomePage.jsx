@@ -7,12 +7,12 @@ import ScrollToTopButton from "../Components/ScrollToTop";
 import ListData from "../Components/ListData";
 import MapKominfo from "../Components/MapKominfo";
 import Infografis from "../Components/Infografis";
+import CarouselHome from "../Components/CarouselHome";
 
 const HomePage = () => {
-
   return (
-    <div className="pt-40 text-4xl flex flex-col justify-center items-center mx-20">
-      <Infografis/>
+    <div className="pt-32 text-4xl flex flex-col justify-center items-center mx-20">
+      <CarouselHome />
       <Typography variant="fontH2">
         LLorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, facere.
         Veritatis laboriosam iusto, similique non, ea magnam nulla voluptatem
@@ -32,10 +32,11 @@ const HomePage = () => {
       </Button>
 
       <ListData />
-      <MapKominfo/>
       <ScrollToTopButton />
-      <Footer />
-      <FooterEnd />
+      <div className="w-full flex flex-col">
+        <Footer />
+        <FooterEnd />
+      </div>
     </div>
   );
 };
