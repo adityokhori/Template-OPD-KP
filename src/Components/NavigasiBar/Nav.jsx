@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMenu, IoClose } from "react-icons/io5";
+import LoginIcon from "@mui/icons-material/Login";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -53,36 +55,47 @@ const Nav = () => {
         scrolled ? "bg-white" : "bg-white"
       }`}
     >
-      <div className="flex items-center justify-between p-4 md:px-8 lg:px-40">
-        <Link to="/">
-          <div className="font-bold text-2xl cursor-pointer flex items-center ">
-            <img src="/TPI-Logo.png" className="w-8 h-10" />
-            <h1 className="pl-4">DINAS KOMUNIKASI DAN INFORMATIKA</h1>
-          </div>
-        </Link>
-      </div>
       <div onClick={toggleMenu} className="text-3xl cursor-pointer md:hidden ">
         {open ? <IoClose /> : <IoMenu />}
       </div>
 
       <ul
-        className={`md:flex md:items-center flex justify-center items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
+        className={`px-20 md:flex md:items-center flex justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
           open ? "top-30 bg-white bg-opacity-80" : "top-[-490px]"
         }`}
       >
-        {Links.map((link) => (
-          <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
-            <Link
-              to={link.link}
-              className={`${
-                activeLink === link.name ? "text-blue-600" : "text-black"
-              } hover:text-blue-600 py-1 duration-500 flex justify-center items-center`}
-              onClick={() => handleLinkClick(link.name)}
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
+        <Link to="/">
+          <div className="font-bold text-2xl cursor-pointer flex items-center">
+            <img src="/diskominfo_kota.png" className="w-100 h-20" />
+          </div>
+        </Link>
+        <div className="flex flex-row">
+          {Links.map((link) => (
+            <li key={link.name} className="md:ml-8 md:my-0 my-7">
+              <Link
+                to={link.link}
+                className={`${
+                  activeLink === link.name ? "text-blue-600" : "text-black"
+                } hover:text-blue-600 py-1 duration-500`}
+                onClick={() => handleLinkClick(link.name)}
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+          <div className="pl-20 flex flex-row justify-center items-center">
+            <div>
+              <Link to="/">
+                <DarkModeOutlinedIcon className="hover:text-blue-500" />
+              </Link>
+            </div>
+            <div className="pl-4">
+              <Link to="/login">
+                <LoginIcon className="hover:text-blue-500" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </ul>
     </div>
   );

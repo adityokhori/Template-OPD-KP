@@ -10,14 +10,17 @@ const Footer = () => {
     <Box
       sx={{
         width: "100%",
-        bgcolor: "footer.main",
+        bgcolor: "primary.main",
         color: "white",
       }}
     >
       <div className="px-8 flex flex-row justify-center items-center">
-        <div className="flex justify-center items-center w-2/5 bg-yellow-300">
-          <img src="/TPI-Logo.png" className="w-40 h-auto p-4" />
-          <div className="flex flex-col">
+        <div className="flex flex-col justify-center items-center w-2/5">
+          <div className="flex flex-row scale-100 py-4">
+            <img src="/TPI-Logo.png" className="w-20 h-auto" />
+            <img src="/diskominfo_kota.png" className="w-60 h-42" />
+          </div>
+          <div className="flex flex-col px-10 pt-2">
             <Typography variant="fontH2" lineHeight={1} className="text-start">
               Dinas Komunikasi dan Informatika
             </Typography>
@@ -30,7 +33,7 @@ const Footer = () => {
               Senggarang, Kecamatan Tanjungpinang Kota, Tanjungpinang, Kepulauan
               Riau
             </Typography>
-            <div className="text-start flex flex-col">
+            <div className="text-start flex flex-col pt-2">
               <Typography variant="teks">
                 <CallIcon /> +62812676732579
               </Typography>
@@ -40,10 +43,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center bg-red-300 w-3/5">
+        <div className="flex justify-center items-center w-3/5">
           <ListMenuFooter />
           <ListMenuFooter />
-          <MapKominfo/>
+          <MapKominfo />
         </div>
       </div>
     </Box>

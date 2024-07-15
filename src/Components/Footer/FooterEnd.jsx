@@ -6,7 +6,7 @@ const FooterEnd = () => {
     <Box
       sx={{
         width: '100%',
-        bgcolor: 'footer.main',
+        bgcolor: 'primary.main',
         color: 'white',
         textAlign: 'center',
         py: 2,

@@ -3,18 +3,22 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: '#232323',
     },
     secondary: {
       main: '#ff6600', 
     },
     footer: {
-      main: '#404040', 
+      main: '#C2C2C2', 
     },
+    abuabu:{
+      main: '#404040',
+    }
+    // mode: 'dark',
   },
   typography: {
     fontH1:{
-      fontSize : 50,
+      fontSize : 34,
       fontFamily: 'Arial',
       fontStyle : 'bold',
     },

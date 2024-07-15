@@ -1,42 +1,46 @@
-import React from "react";
-import { Typography, Button } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import React,{useState, useEffect} from "react";
+import { Typography, Button, Container, Box } from "@mui/material";
 import FooterEnd from "../Components/Footer/FooterEnd";
 import Footer from "../Components/Footer/Footer";
-import ScrollToTopButton from "../Components/ScrollToTop";
-import ListData from "../Components/ListData";
-import MapKominfo from "../Components/MapKominfo";
 import Infografis from "../Components/Infografis";
 import CarouselHome from "../Components/CarouselHome";
+import Pranala1 from "../Components/Pranala/Pranala1";
+import Berita from "../Widget/Berita";
+import WidgetKominfo from "../WidgetKominfo";
+import Modal from "../Widget/PopUp"
 
 const HomePage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    setIsModalOpen(true);
+  }, []);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="pt-32 text-4xl flex flex-col justify-center items-center mx-20">
-      <CarouselHome />
-      <Typography variant="fontH2">
-        LLorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, facere.
-        Veritatis laboriosam iusto, similique non, ea magnam nulla voluptatem
-        aperiam tempora soluta voluptate neque, facere iste quisquam quo! Et,
-        consequatur?
-      </Typography>
-
-      <Typography variant="fontH2">
-        2Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, facere.
-        Veritatis laboriosam iusto, similique non, ea magnam nulla voluptatem
-        aperiam tempora soluta voluptate neque, facere iste quisquam quo! Et,
-        consequatur?
-      </Typography>
-
-      <Button variant="contained" color="primary" startIcon={<DeleteIcon />}>
-        Click Me
-      </Button>
-
-      <ListData />
-      <ScrollToTopButton />
-      <div className="w-full flex flex-col">
-        <Footer />
-        <FooterEnd />
+    <div className="pt-28">
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <div className="mx-10 flex flex-col justify-center items-center">
+        <CarouselHome />
+        <Berita />
+        <Infografis />
+        <div className="grid grid-cols-2 gap-8 gap-x-20 py-8">
+          <Pranala1 />
+          <Pranala1 />
+          <Pranala1 />
+          <Pranala1 />
+        </div>
       </div>
+      <Box sx={{ bgcolor: "primary.main" }}>
+        <Container sx={{ bgcolor: "primary.main" }}>
+          <Footer />
+          <FooterEnd />
+        </Container>
+      </Box>
+      <WidgetKominfo />
     </div>
   );
 };
