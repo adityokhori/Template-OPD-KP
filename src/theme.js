@@ -13,6 +13,9 @@ const theme = createTheme({
     },
     abuabu:{
       main: '#404040',
+    },
+    searchbg:{
+      main:  '#d9d9d9',
     }
     // mode: 'dark',
   },

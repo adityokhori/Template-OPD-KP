@@ -18,7 +18,7 @@ const Nav = () => {
 
   const Links = [
     { name: "Beranda", link: "/" },
-    { name: "Berita", link: "/Berita" },
+    { name: "Berita", link: "/berita" },
     { name: "Profil", link: "/Profil" },
     { name: "Pengumuman", link: "/pengumuman" },
     { name: "Gallery", link: "/gallery" },
@@ -90,7 +90,7 @@ const Nav = () => {
               </Link>
             </div>
             <div className="pl-4">
-              <Link to="/login">
+              <Link to="https://icms.tanjungpinangkota.go.id/login">
                 <LoginIcon className="hover:text-blue-500" />
               </Link>
             </div>

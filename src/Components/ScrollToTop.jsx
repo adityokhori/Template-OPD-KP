@@ -41,17 +41,13 @@ const ScrollToTopButton = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        bgcolor: "primary.main",
-      }}
-    >
+    <div>
       <Zoom in={isVisible}>
         <Fab color="secondary" onClick={scrollToTop} className={classes.root}>
           <ArrowUpwardIcon />
         </Fab>
       </Zoom>
-    </Box>
+    </div>
   );
 };
 

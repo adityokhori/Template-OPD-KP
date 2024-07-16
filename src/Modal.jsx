@@ -7,7 +7,7 @@ const Modal = ({ show, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 z-50 overflow-auto bg-smoke-light flex">
-      <div className="relative w-full max-w-md m-auto flex-col flex rounded-lg shadow-xl">
+      <div className="relative w-full max-w-md ml-auto flex-col flex rounded-lg shadow-xl">
         <button
           className="absolute top-0 right-0"
           onClick={onClose}

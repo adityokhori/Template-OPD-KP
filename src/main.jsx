@@ -7,6 +7,8 @@ import HomePage from "./Pages/HomePage";
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import { ThemeProvider } from '@mui/material/styles';
+import BeritaPage from "./Pages/BeritaPage";
+import PengumumanPage from "./Pages/PengumumanPage";
 
 const AppLayout = () => {
   return (
@@ -25,6 +27,21 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+      {
+        path: "/berita",
+        element: <BeritaPage/>,
+      },
+      {
+        path: "/pengumuman",
+        element: <PengumumanPage/>,
+      },
+      {
+        path: "/kalender-event",
+  
+      },
+      {
+        path: "/gallery",
+      }
     ],
   },
 ]);

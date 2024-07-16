@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Button, Container, Box } from "@mui/material";
 import FooterEnd from "../Components/Footer/FooterEnd";
 import Footer from "../Components/Footer/Footer";
@@ -7,7 +7,7 @@ import CarouselHome from "../Components/CarouselHome";
 import Pranala1 from "../Components/Pranala/Pranala1";
 import Berita from "../Widget/Berita";
 import WidgetKominfo from "../WidgetKominfo";
-import Modal from "../Widget/PopUp"
+import Modal from "../Widget/PopUp";
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,12 +27,12 @@ const HomePage = () => {
         <CarouselHome />
         <Berita />
         <Infografis />
-        <div className="grid grid-cols-2 gap-8 gap-x-20 py-8">
-          <Pranala1 />
-          <Pranala1 />
-          <Pranala1 />
-          <Pranala1 />
-        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-8 gap-x-20 py-8 mx-10">
+        <Pranala1 />
+        <Pranala1 />
+        <Pranala1 />
+        <Pranala1 />
       </div>
       <Box sx={{ bgcolor: "primary.main" }}>
         <Container sx={{ bgcolor: "primary.main" }}>

@@ -36,7 +36,7 @@ const Pranala1 = () => {
         showArrows={true}
       >
         {imageUrls.map((url, index) => (
-          <Link to="/halo">
+          <Link to="/halo" key={index}>
             <div key={index} className="p-6 bg-gray-200">
               <img src={url} alt={`Random ${index + 1}`} />
             </div>

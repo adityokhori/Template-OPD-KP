@@ -21,8 +21,8 @@ const Infografis = () => {
   ];
 
   return (
-    <Box display="flex" alignItems="center" sx={{flexDirection: 'column', bgcolor: 'primary.main', padding: 8}}>
-      <Typography variant="fontH2" sx={{ textAlign: "center", color: "white" }}>
+    <Box display="flex" alignItems="center" sx={{flexDirection: 'column', bgcolor: 'primary.main', padding: 6}}>
+      <Typography variant="fontH1" sx={{ textAlign: "center", color: "white" }}>
         Infografis
       </Typography>
       <Carousel
@@ -35,7 +35,7 @@ const Infografis = () => {
         centerSlidePercentage={30}
       >
         {imageUrls.map((url, index) => (
-          <Link to="/halo">
+          <Link to="/halo" key={index}>
             <div key={index} className="p-4">
               <img src={url} alt={`Random ${index + 1}`} />
             </div>
@@ -45,4 +45,5 @@ const Infografis = () => {
     </Box>
   );
 };
+
 export default Infografis;

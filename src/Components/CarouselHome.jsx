@@ -23,8 +23,8 @@ const CarouselHome = () => {
         infiniteLoop={true}
       >
         {imageUrls.map((url, index) => (
-          <Link to="/halo">
-            <div key={index}>
+          <Link to="/halo" key={index}>
+            <div>
               <img
                 src={url}
                 alt={`Random ${index + 1}`}
@@ -37,4 +37,5 @@ const CarouselHome = () => {
     </div>
   );
 };
+
 export default CarouselHome;
