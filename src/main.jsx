@@ -9,6 +9,7 @@ import theme from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 import BeritaPage from "./Pages/BeritaPage";
 import PengumumanPage from "./Pages/PengumumanPage";
+import KalenderPage from "./Pages/KalenderPage";
 
 const AppLayout = () => {
   return (
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/kalender-event",
+        element: <KalenderPage/>
   
       },
       {

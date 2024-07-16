@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Paper,
   InputBase,
@@ -6,15 +6,40 @@ import {
   Box,
   Container,
   Typography,
+  Pagination,
 } from "@mui/material";
 import Footer from "../Components/Footer/Footer";
 import FooterEnd from "../Components/Footer/FooterEnd";
 import SearchIcon from "@mui/icons-material/Search";
+import FooterPage from "./FooterPage";
+
+const dummyNewsData = Array.from({ length: 20 }, (_, i) => ({
+  id: i + 1,
+  title: `News Title ${i + 1}`,
+  description: `This is the description for news ${
+    i + 1
+  }. It provides a brief overview of the news story. It provides a brief overview of the news story.`,
+  imageUrl: `https://picsum.photos/180/120?random=${12 + i}`,
+}));
 
 const BeritaPage = () => {
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(dummyNewsData.length / itemsPerPage);
+
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
+
+  const newsToDisplay = dummyNewsData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
   return (
     <div className="pt-4">
       <div className="w-full flex flex-row p-20">
+        {/* berita */}
         <div className="w-3/5">
           <Typography variant="fontH1">Berita</Typography>
           <Paper
@@ -36,43 +61,64 @@ const BeritaPage = () => {
               <SearchIcon />
             </IconButton>
           </Paper>
+
           <div className="w-full md:w-4/5 h-1/2 pt-8">
             <div className="space-y-4">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {newsToDisplay.map((news) => (
                 <div
-                  key={i}
+                  key={news.id}
                   className="border rounded-lg overflow-hidden shadow-lg flex flex-row"
                 >
                   <img
-                    src={`https://picsum.photos/180/120?random=${12 + i}`}
-                    alt={`News ${i}`}
+                    src={news.imageUrl}
+                    alt={`News ${news.id}`}
                     className="w-full h-auto object-fit"
                   />
                   <div className="p-4">
-                    <h3 className="text-lg font-bold mb-2">News Title {i}</h3>
+                    <h3 className="text-lg font-bold mb-2">{news.title}</h3>
                     <p className="text-gray-700 text-base line-clamp-3">
-                      This is the description for news {i}. It provides a brief
-                      overview of the news story. This is the description for news {i}. It provides a brief
-                      overview of the news story.
+                      {news.description}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
+
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handleChangePage}
+                color="primary"
+              />
+            </Box>
           </div>
         </div>
         <div className="w-2/5">
           <Typography variant="fontH1">Video Terbaru</Typography>
+          <div className="border rounded-lg overflow-hidden shadow-lg p-4 mt-4">
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+            <Typography variant="h6" className="mt-2">
+              Latest Video
+            </Typography>
+            <Typography variant="body2" className="text-gray-700">
+              This is a description of the latest video. It provides a brief
+              overview of the video content.
+            </Typography>
+          </div>
         </div>
       </div>
 
       {/* footer */}
-      <Box sx={{ bgcolor: "primary.main" }}>
-        <Container sx={{ bgcolor: "primary.main" }}>
-          <Footer />
-          <FooterEnd />
-        </Container>
-      </Box>
+      <FooterPage />
     </div>
   );
 };

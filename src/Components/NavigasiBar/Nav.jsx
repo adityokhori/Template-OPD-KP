@@ -20,6 +20,7 @@ const Nav = () => {
     { name: "Beranda", link: "/" },
     { name: "Berita", link: "/berita" },
     { name: "Profil", link: "/Profil" },
+    { name: "Kalender Event", link: "/kalender-event" },
     { name: "Pengumuman", link: "/pengumuman" },
     { name: "Gallery", link: "/gallery" },
     { name: "Artikel", link: "/artikel" },

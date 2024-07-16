@@ -8,6 +8,7 @@ import Pranala1 from "../Components/Pranala/Pranala1";
 import Berita from "../Widget/Berita";
 import WidgetKominfo from "../WidgetKominfo";
 import Modal from "../Widget/PopUp";
+import FooterPage from "./FooterPage";
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,12 +35,7 @@ const HomePage = () => {
         <Pranala1 />
         <Pranala1 />
       </div>
-      <Box sx={{ bgcolor: "primary.main" }}>
-        <Container sx={{ bgcolor: "primary.main" }}>
-          <Footer />
-          <FooterEnd />
-        </Container>
-      </Box>
+      <FooterPage />
       <WidgetKominfo />
     </div>
   );
