@@ -60,44 +60,30 @@ const PengumumanPage = () => {
         <div className="w-2/5 pl-8">
           <div>
             <Typography variant="fontH1">Video Terbaru</Typography>
-            <div className="border rounded-lg overflow-hidden shadow-lg p-4">
+            <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4">
               <iframe
-                width="100%"
-                height="315"
+                width="80%"
+                height="200"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
-              <Typography variant="h6" className="mt-2">
-                Latest Video
-              </Typography>
-              <Typography variant="body2" className="text-gray-700">
-                This is a description of the latest video. It provides a brief
-                overview of the video content.
-              </Typography>
             </div>
           </div>
           <div className="pt-8 ">
             <Typography variant="fontH1">Berita Terbaru</Typography>
-            <div className="border rounded-lg overflow-hidden shadow-lg p-4">
+            <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4">
               <iframe
-                width="100%"
-                height="315"
+                width="80%"
+                height="200"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
-              <Typography variant="h6" className="mt-2">
-                Latest Video
-              </Typography>
-              <Typography variant="teks" className="text-gray-700">
-                This is a description of the latest video. It provides a brief
-                overview of the video content.
-              </Typography>
             </div>
           </div>
         </div>

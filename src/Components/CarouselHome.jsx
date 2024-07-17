@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { ClassNames } from "@emotion/react";
 
 const CarouselHome = () => {
   const imageUrls = [
@@ -18,7 +17,7 @@ const CarouselHome = () => {
       <Carousel
         showThumbs={false}
         showStatus={false}
-        showIndicators={false}
+        showIndicators={true}
         autoPlay={true}
         infiniteLoop={true}
       >

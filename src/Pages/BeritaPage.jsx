@@ -8,8 +8,7 @@ import {
   Typography,
   Pagination,
 } from "@mui/material";
-import Footer from "../Components/Footer/Footer";
-import FooterEnd from "../Components/Footer/FooterEnd";
+import {Link} from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import FooterPage from "./FooterPage";
 
@@ -58,29 +57,31 @@ const BeritaPage = () => {
               inputProps={{ "aria-label": "search" }}
             />
             <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-              <SearchIcon />
+              <SearchIcon className="text-black" />
             </IconButton>
           </Paper>
 
-          <div className="w-full md:w-4/5 h-1/2 pt-8">
+          <div className="w-full h-1/2 pt-8 p-4">
             <div className="space-y-4">
               {newsToDisplay.map((news) => (
-                <div
-                  key={news.id}
-                  className="border rounded-lg overflow-hidden shadow-lg flex flex-row"
-                >
-                  <img
-                    src={news.imageUrl}
-                    alt={`News ${news.id}`}
-                    className="w-full h-auto object-fit"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-lg font-bold mb-2">{news.title}</h3>
-                    <p className="text-gray-700 text-base line-clamp-3">
-                      {news.description}
-                    </p>
+                <Link to="/">
+                  <div
+                    key={news.id}
+                    className="border rounded-lg overflow-hidden shadow-lg flex flex-row"
+                  >
+                    <img
+                      src={news.imageUrl}
+                      alt={`News ${news.id}`}
+                      className="w-full h-auto object-fit"
+                    />
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold mb-2">{news.title}</h3>
+                      <p className="text-gray-700 text-base line-clamp-3">
+                        {news.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -96,23 +97,16 @@ const BeritaPage = () => {
         </div>
         <div className="w-2/5">
           <Typography variant="fontH1">Video Terbaru</Typography>
-          <div className="border rounded-lg overflow-hidden shadow-lg p-4 mt-4">
+          <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4 mt-4">
             <iframe
-              width="100%"
-              height="315"
+              width="80%"
+              height="200"
               src="https://www.youtube.com/embed/dQw4w9WgXcQ"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
-            <Typography variant="h6" className="mt-2">
-              Latest Video
-            </Typography>
-            <Typography variant="body2" className="text-gray-700">
-              This is a description of the latest video. It provides a brief
-              overview of the video content.
-            </Typography>
           </div>
         </div>
       </div>

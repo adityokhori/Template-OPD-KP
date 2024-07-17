@@ -29,7 +29,7 @@ const HomePage = () => {
         <Berita />
         <Infografis />
       </div>
-      <div className="grid grid-cols-2 gap-8 gap-x-20 py-8 mx-10">
+      <div className="grid grid-cols-2 gap-x-20 py-8 mx-10">
         <Pranala1 />
         <Pranala1 />
         <Pranala1 />

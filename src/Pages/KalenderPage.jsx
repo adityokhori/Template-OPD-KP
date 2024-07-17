@@ -20,7 +20,7 @@ const KalenderPage = () => {
     <div className="pt-20">
       <div className="p-8">
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-2xl font-bold">Kalender Tahun {selectedYear}</h1>
+          <h1 className="text-4xl font-bold">Kalender Tahun {selectedYear}</h1>
           <Select
             value={{ value: selectedYear, label: selectedYear }}
             onChange={handleYearChange}
