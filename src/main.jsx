@@ -10,6 +10,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import BeritaPage from "./Pages/BeritaPage";
 import PengumumanPage from "./Pages/PengumumanPage";
 import KalenderPage from "./Pages/KalenderPage";
+import GalleryPage from "./Pages/GalleryPage";
+import ArtikelPage from "./Pages/ArtikelPage";
 
 const AppLayout = () => {
   return (
@@ -43,6 +45,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/gallery",
+        element: <GalleryPage/>
+      },
+      {
+        path: "/artikel",
+        element: <ArtikelPage/>
       }
     ],
   },
