@@ -15,7 +15,6 @@ const importantDates = [
 
 const KalenderWidget = ({ year }) => {
   const [tooltip, setTooltip] = useState(null);
-
   const startDate = startOfYear(new Date(year, 0, 1));
   const endDate = endOfYear(new Date(year, 11, 31));
   const days = eachDayOfInterval({ start: startDate, end: endDate });

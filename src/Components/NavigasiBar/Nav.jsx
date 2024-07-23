@@ -121,11 +121,13 @@ const Nav = () => {
             </li>
           ))}
           <div className="pl-20 flex flex-row justify-center items-center">
-            <div>
+            
+            {/* <div>
               <Link to="/">
                 <DarkModeOutlinedIcon className="hover:text-blue-500" />
               </Link>
-            </div>
+            </div> */}
+
             <div className="pl-4">
               <a
                 href="https://icms.tanjungpinangkota.go.id/login"

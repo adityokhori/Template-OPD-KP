@@ -16,11 +16,11 @@ const Footer = () => {
     >
       <div className="flex flex-row justify-center items-center">
         <div className="flex flex-col justify-center items-center w-2/5">
-          <div className="flex flex-row scale-100 py-4">
-            <img src="/TPI-Logo.png" className="w-20 h-auto" />
-            <img src="/diskominfo_kota.png" className="w-64 h-auto" />
-          </div>
           <div className="flex flex-col px-10 pt-2">
+            <div className="flex flex-row">
+              <img src="/TPI-Logo.png" className="w-20 h-auto" />
+              <img src="/diskominfo_kota.png" className="w-64 h-auto" />
+            </div>
             <Typography variant="fontH2" lineHeight={1} className="text-start">
               Dinas Komunikasi dan Informatika
             </Typography>

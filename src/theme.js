@@ -34,6 +34,10 @@ const theme = createTheme({
       fontSize : 14,
       fontFamily: 'Arial',
     },
+    teksButton:{
+      fontSize : 10,
+      fontFamily: 'Arial',
+    },
   },
   
 });

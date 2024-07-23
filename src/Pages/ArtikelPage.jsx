@@ -43,6 +43,7 @@ const ArtikelPage = () => {
                     alt={`News ${news.id}`}
                     className="w-1/2 h-auto object-fit"
                   />
+                  
                 </div>
               ))}
             </div>

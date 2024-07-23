@@ -30,7 +30,7 @@ const PengumumanPage = () => {
       <div className="w-full flex flex-row p-20">
         {/* berita */}
         <div className="w-3/5">
-          <Typography variant="fontH1">Pengumuman</Typography>
+          <Typography variant="fontH2">Pengumuman</Typography>
           <div className="w-full h-1/2 ">
             <div className="grid grid-cols-2 gap-4">
               {newsToDisplay.map((news) => (
@@ -59,7 +59,7 @@ const PengumumanPage = () => {
 
         <div className="w-2/5 pl-8">
           <div>
-            <Typography variant="fontH1">Video Terbaru</Typography>
+            <Typography variant="fontH2">Video Terbaru</Typography>
             <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4">
               <iframe
                 width="80%"
@@ -73,7 +73,7 @@ const PengumumanPage = () => {
             </div>
           </div>
           <div className="pt-8 ">
-            <Typography variant="fontH1">Berita Terbaru</Typography>
+            <Typography variant="fontH2">Berita Terbaru</Typography>
             <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4">
               <iframe
                 width="80%"

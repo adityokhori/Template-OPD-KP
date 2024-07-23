@@ -25,7 +25,7 @@ const KalenderPage = () => {
             value={{ value: selectedYear, label: selectedYear }}
             onChange={handleYearChange}
             options={years}
-            className="w-40 pt-4"
+            className="w-24 pt-4"
             
           />
         </div>

@@ -11,14 +11,12 @@ const Berita = () => {
           variant="contained"
           component={Link}
           to="/berita"
-          onClick={() => {
-            alert("halooo");
-          }}
           sx={{
             ml: 4,
+            bgcolor:'secondary.main'
           }}
         >
-          Selengkapnya
+          <Typography variant="teksButton">Selengkapnya</Typography>
         </Button>
       </div>
       <div className="flex flex-row justify-center items-start pt-4">
@@ -38,6 +36,7 @@ const Berita = () => {
                   assumenda facilis reprehenderit animi, magni libero beatae ad?
                   Expedita unde ex tempore accusantium? Aspernatur?
                 </p>
+                <p>dadhadgadua</p>
               </div>
             </div>
           </Link>
@@ -46,7 +45,7 @@ const Berita = () => {
         <div className="w-full md:w-1/3 ml-10">
           <div className="space-y-4">
             {[1, 2, 3, 4, 5].map((i) => (
-              <Link>
+              <Link key={i}>
                 <div
                   key={i}
                   className="border rounded-lg overflow-hidden shadow-lg flex flex-row"
