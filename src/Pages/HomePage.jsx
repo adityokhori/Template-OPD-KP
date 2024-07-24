@@ -39,7 +39,6 @@ const HomePage = () => {
       </div>
       <FooterPage />
       <WidgetKominfo />
-      <h1>Haloooo</h1>
     </div>
   );
 };
