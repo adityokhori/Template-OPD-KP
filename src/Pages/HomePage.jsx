@@ -21,6 +21,8 @@ const HomePage = () => {
     setIsModalOpen(false);
   };
 
+
+
   return (
     <div className="pt-28">
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
@@ -37,6 +39,7 @@ const HomePage = () => {
       </div>
       <FooterPage />
       <WidgetKominfo />
+      <h1>Haloooo</h1>
     </div>
   );
 };
