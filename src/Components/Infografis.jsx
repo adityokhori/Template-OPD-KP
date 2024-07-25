@@ -21,10 +21,8 @@ const Infografis = () => {
   ];
 
   return (
-    <Box display="flex" alignItems="center" sx={{flexDirection: 'column', bgcolor: 'primary.main', padding: 6}}>
-      <Typography variant="fontH1" sx={{ textAlign: "center", color: "white" }}>
-        Infografis
-      </Typography>
+    <div className="flex flex-col items-center p-2 lg:p-6 bg-primary">
+      <h1 className="text-h2 lg:text-h1 font-semibold text-white">Infografis</h1>
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -36,13 +34,13 @@ const Infografis = () => {
       >
         {imageUrls.map((url, index) => (
           <Link to="/halo" key={index}>
-            <div key={index} className="p-4">
+            <div key={index} className="p-1 lg:p-4">
               <img src={url} alt={`Random ${index + 1}`} />
             </div>
           </Link>
         ))}
       </Carousel>
-    </Box>
+    </div>
   );
 };
 

@@ -21,10 +21,10 @@ const Pranala1 = () => {
   ];
 
   return (
-    <div className="p-6">
-        <Typography variant="fontH2">
+    <div className="p-2 lg:p-6">
+        <h1 className="bg-green text-h3 lg:text-h2 ">
             Pranala Website Tanjungpinang
-        </Typography>
+        </h1>
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -32,12 +32,12 @@ const Pranala1 = () => {
         autoPlay={true}
         infiniteLoop={true}
         centerMode={true}
-        centerSlidePercentage={25}
+        centerSlidePercentage={30}
         showArrows={true}
       >
         {imageUrls.map((url, index) => (
           <Link to="/halo" key={index}>
-            <div key={index} className="p-4 bg-gray-200">
+            <div key={index} className="p-2 lg:p-4 bg-gray-200">
               <img src={url} alt={`Random ${index + 1}`} />
             </div>
           </Link>

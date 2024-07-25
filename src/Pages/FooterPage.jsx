@@ -5,7 +5,7 @@ import {Box,  Container} from "@mui/material";
 
 const FooterPage = () => {
   return (
-    <Box sx={{ bgcolor: "primary.main" }}>
+    <Box sx={{ bgcolor: "primary.main" }} className="p-4">
       <Container sx={{ bgcolor: "primary.main" }}>
         <Footer />
         <FooterEnd />

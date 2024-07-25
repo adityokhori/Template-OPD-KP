@@ -26,12 +26,12 @@ const HomePage = () => {
   return (
     <div className="pt-28">
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <div className="mx-10 flex flex-col justify-center items-center">
+      <div className="mx-2 lg:mx-10 flex flex-col justify-center items-center">
         <CarouselHome />
         <Berita />
         <Infografis />
       </div>
-      <div className="grid grid-cols-2 gap-x-20 py-8 mx-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 py-8 mx-10">
         <Pranala1 />
         <Pranala1 />
         <Pranala1 />

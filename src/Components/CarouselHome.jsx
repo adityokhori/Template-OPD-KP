@@ -13,7 +13,7 @@ const CarouselHome = () => {
   ];
 
   return (
-    <div>
+    <div >
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -23,7 +23,7 @@ const CarouselHome = () => {
       >
         {imageUrls.map((url, index) => (
           <Link to="/halo" key={index}>
-            <div>
+            <div >
               <img
                 src={url}
                 alt={`Random ${index + 1}`}

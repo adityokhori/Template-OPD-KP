@@ -16,9 +16,9 @@ const MapKominfo = () => {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
-      <div className="grid grid-cols-3 gap-4 pt-4 ">
+      <div className="grid grid-cols-3 gap-4 pt-4">
         <Link to="https://www.google.co.id/">
-          <InstagramIcon />
+          <InstagramIcon/>
         </Link>
         <Link to="https://www.google.co.id/">
           <FacebookIcon />

@@ -46,14 +46,14 @@ const PengumumanPage = () => {
                 </div>
               ))}
             </div>
-            <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+            <div className="flex justify-center mt-4">
               <Pagination
                 count={totalPages}
                 page={page}
                 onChange={handleChangePage}
                 color="primary"
               />
-            </Box>
+            </div>
           </div>
         </div>
 

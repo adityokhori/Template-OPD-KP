@@ -65,7 +65,7 @@ const Nav = () => {
 
       <ul
         className={`px-20 md:flex md:items-center flex justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
-          open ? "top-30 bg-white bg-opacity-80" : "top-[-490px]"
+          open ? "top-30 bg-white bg-opacity-80 " : "top-[-4px] "
         }`}
       >
         <Link to="/">
@@ -73,7 +73,7 @@ const Nav = () => {
             <img src="/diskominfo_kota.png" className="w-100 h-20" />
           </div>
         </Link>
-        <div className="flex flex-row justify-center items-center">
+        <div className="flex flex-col lg:flex-row justify-center items-center">
           {Links.map((link) => (
             <li key={link.name} className="md:ml-8 md:my-0 my-7 relative">
               {link.dropdown ? (

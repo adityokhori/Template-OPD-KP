@@ -8,16 +8,14 @@ import {
   Typography,
   Pagination,
 } from "@mui/material";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import FooterPage from "./FooterPage";
 
 const dummyNewsData = Array.from({ length: 20 }, (_, i) => ({
   id: i + 1,
   title: `News Title ${i + 1}`,
-  description: `This is the description for news ${
-    i + 1
-  }. It provides a brief overview of the news story. It provides a brief overview of the news story.`,
+  description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. At natus facere, error distinctio placeat ipsam praesentium, dolorum odio laborum deserunt amet. Rerum dolore vero, iure omnis nesciunt error alias fugit.`,
   imageUrl: `https://picsum.photos/180/120?random=${12 + i}`,
 }));
 
@@ -37,9 +35,9 @@ const BeritaPage = () => {
 
   return (
     <div className="pt-4">
-      <div className="w-full flex flex-row p-20">
+      <div className="w-full flex flex-col lg:flex-row p-8 lg:p-20">
         {/* berita */}
-        <div className="w-3/5">
+        <div className="w-full lg:w-3/5">
           <Typography variant="fontH1">Berita</Typography>
           <Paper
             component="form"
@@ -95,7 +93,7 @@ const BeritaPage = () => {
             </Box>
           </div>
         </div>
-        <div className="w-2/5">
+        <div className="w-full pt-8 lg:w-2/5 lg:pt-0 ">
           <Typography variant="fontH1">Video Terbaru</Typography>
           <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4 mt-4">
             <iframe
