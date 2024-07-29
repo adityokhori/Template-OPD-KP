@@ -64,20 +64,20 @@ const Nav = () => {
       </div>
 
       <ul
-        className={`px-20 md:flex md:items-center flex justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
+        className={`bg-cyan-400 px-20 md:flex md:items-center flex flex-col lg:flex-row lg:justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
           open ? "top-30 bg-white bg-opacity-80 " : "top-[-4px] "
         }`}
       >
         <Link to="/">
-          <div className="font-bold text-2xl cursor-pointer flex items-center">
+          <div className="bg-green-400 font-bold text-2xl cursor-pointer flex items-center">
             <img src="/diskominfo_kota.png" className="w-100 h-20" />
           </div>
         </Link>
         <div className="flex flex-col lg:flex-row justify-center items-center">
           {Links.map((link) => (
-            <li key={link.name} className="md:ml-8 md:my-0 my-7 relative">
+            <li key={link.name} className="md:ml-8 md:my-0 my-7">
               {link.dropdown ? (
-                <div >
+                <div className="bg-blue-400">
                   <button
                     className={`${
                       activeLink === link.name ? "text-blue-600" : "text-black"
@@ -110,7 +110,7 @@ const Nav = () => {
               ) : (
                 <Link
                   to={link.link}
-                  className={`${
+                  className={`bg-red-500 ${
                     activeLink === link.name ? "text-blue-600" : "text-black"
                   } hover:text-blue-600 py-1 duration-500`}
                   onClick={() => handleLinkClick(link.name)}
@@ -120,7 +120,7 @@ const Nav = () => {
               )}
             </li>
           ))}
-          <div className="pl-20 flex flex-row justify-center items-center">
+          <div className="bg-yellow-400 lg:pl-20 flex flex-row justify-center items-center">
             
             {/* <div>
               <Link to="/">
@@ -128,7 +128,7 @@ const Nav = () => {
               </Link>
             </div> */}
 
-            <div className="pl-4">
+            <div>
               <a
                 href="https://icms.tanjungpinangkota.go.id/login"
                 target="_blank"
