@@ -4,14 +4,15 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Navbar from "./Components/NavigasiBar/Nav";
 import HomePage from "./Pages/HomePage";
-import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
-import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from "@mui/material/CssBaseline";
+import theme from "./theme";
+import { ThemeProvider } from "@mui/material/styles";
 import BeritaPage from "./Pages/BeritaPage";
 import PengumumanPage from "./Pages/PengumumanPage";
 import KalenderPage from "./Pages/KalenderPage";
 import GalleryPage from "./Pages/GalleryPage";
 import ArtikelPage from "./Pages/ArtikelPage";
+import BeritaView from "./Pages/BeritaView";
 
 const AppLayout = () => {
   return (
@@ -29,32 +30,35 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-      },  
+      },
       {
         path: "/beranda",
-        element: <HomePage/>,
+        element: <HomePage />,
       },
       {
         path: "/berita",
-        element: <BeritaPage/>,
+        element: <BeritaPage />,
+      },
+      {
+        path: "/berita/:id",
+        element: <BeritaView />,
       },
       {
         path: "/pengumuman",
-        element: <PengumumanPage/>,
+        element: <PengumumanPage />,
       },
       {
         path: "/kalender-event",
-        element: <KalenderPage/>
-  
+        element: <KalenderPage />,
       },
       {
         path: "/gallery",
-        element: <GalleryPage/>
+        element: <GalleryPage />,
       },
       {
         path: "/artikel",
-        element: <ArtikelPage/>
-      }
+        element: <ArtikelPage />,
+      },
     ],
   },
 ]);

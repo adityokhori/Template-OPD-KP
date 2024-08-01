@@ -10,10 +10,11 @@ const CarouselHome = () => {
     "https://picsum.photos/400/150?random=3",
     "https://picsum.photos/400/150?random=4",
     "https://picsum.photos/400/150?random=5",
+    "https://picsum.photos/400/150?random=6",
   ];
 
   return (
-    <div >
+    <div>
       <Carousel
         showThumbs={false}
         showStatus={false}
