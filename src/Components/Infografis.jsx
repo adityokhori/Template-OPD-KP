@@ -1,24 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Infografis = () => {
-  const imageUrls = [
-    "https://picsum.photos/120/180?random=1",
-    "https://picsum.photos/120/180?random=2",
-    "https://picsum.photos/120/180?random=3",
-    "https://picsum.photos/120/180?random=4",
-    "https://picsum.photos/120/180?random=5",
-    "https://picsum.photos/120/180?random=6",
-    "https://picsum.photos/120/180?random=7",
-    "https://picsum.photos/120/180?random=8",
-    "https://picsum.photos/120/180?random=9",
-    "https://picsum.photos/120/180?random=10",
-    "https://picsum.photos/120/180?random=11",
-    "https://picsum.photos/120/180?random=12",
-  ];
+  const [infografisData, setInfografisData] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ req: "infografis_album" }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setInfografisData(
+          data.infografis_album.filter((item) => item.guid_gambar !== null)
+        );
+        console.log(
+          `${process.env.VUE_APP_API_URL}/api/getDownloadInfografis/${process.env.VUE_APP_OPD_ID}/${data.infografis_album[0].guid_gambar}`
+        );
+      })
+      .catch((error) => console.error("Error fetching infografis data:", error));
+  }, []);
 
   return (
     <div className="flex flex-col items-center p-2 lg:p-6 bg-primary">
@@ -30,12 +40,17 @@ const Infografis = () => {
         autoPlay={true}
         infiniteLoop={true}
         centerMode={true}
-        centerSlidePercentage={30}
+        centerSlidePercentage={33.33} // Adjust to fit 3 images
+        selectedItem={1} // Adjust the initial slide to center the images
       >
-        {imageUrls.map((url, index) => (
-          <Link to="/halo" key={index}>
-            <div key={index} className="p-1 lg:p-4">
-              <img src={url} alt={`Random ${index + 1}`} />
+        {infografisData.map((item, index) => (
+          <Link to={`/infografis/${item.guid}`} key={index}>
+            <div className="p-1 lg:p-2">
+              <img
+                src={`${process.env.VUE_APP_API_URL}/api/getDownloadInfografis/${process.env.VUE_APP_OPD_ID}/${item.guid_gambar}`}
+                alt={item.judul}
+                style={{ width: "100%", height: "auto" }} // Adjust width to fill the space
+              />
             </div>
           </Link>
         ))}

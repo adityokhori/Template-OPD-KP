@@ -13,6 +13,9 @@ import KalenderPage from "./Pages/KalenderPage";
 import GalleryPage from "./Pages/GalleryPage";
 import ArtikelPage from "./Pages/ArtikelPage";
 import BeritaView from "./Pages/BeritaView";
+import ArtikelView from "./Pages/ArtikelView";
+
+
 
 const AppLayout = () => {
   return (
@@ -48,7 +51,7 @@ const router = createBrowserRouter([
         element: <PengumumanPage />,
       },
       {
-        path: "/kalender-event",
+        path: "/kalendar_even",
         element: <KalenderPage />,
       },
       {
@@ -58,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/artikel",
         element: <ArtikelPage />,
+      },
+      {
+        path: "/artikel/:id",
+        element: <ArtikelView />,
       },
     ],
   },

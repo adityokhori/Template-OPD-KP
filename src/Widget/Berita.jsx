@@ -55,20 +55,6 @@ const Berita = () => {
         <div className="w-full lg:w-1/2 ">
           <div className=" flex flex-row justify-start items-start lg:items-center pb-4">
             <Typography variant="fontH2">Berita Terkini Diskominfo</Typography>
-            <Button
-              variant="contained"
-              component={Link}
-              to="/berita"
-              sx={{
-                ml: 2,
-                bgcolor: "secondary.main",
-                "&:hover": {
-                  bgcolor: "secondary.dark",
-                },
-              }}
-            >
-              <Typography variant="teksButton">Selengkapnya</Typography>
-            </Button>
           </div>
           <Link to={`/berita/${beritaTerbaru.id}`}>
             <div className="border rounded-lg overflow-hidden shadow-lg">
@@ -93,8 +79,21 @@ const Berita = () => {
         <div className="w-full lg:w-1/2 ml-0 lg:ml-10 pt-4 lg:pt-0">
           <div className="pt-8 lg:pt-0 ">
             <div className="pb-4">
-
-            <Typography variant="fontH2">Berita Lainnya</Typography>
+              <Typography variant="fontH2">Berita Lainnya</Typography>
+              <Button
+                variant="contained"
+                component={Link}
+                to="/berita"
+                sx={{
+                  ml: 2,
+                  bgcolor: "secondary.main",
+                  "&:hover": {
+                    bgcolor: "secondary.dark",
+                  },
+                }}
+              >
+                <Typography variant="teksButton">Selengkapnya</Typography>
+              </Button>
             </div>
             {beritaLainnya.map((item, index) => (
               <Link key={index} to={`/berita/${item.id}`}>

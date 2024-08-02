@@ -1,28 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography, Pagination } from "@mui/material";
 import FooterPage from "./FooterPage";
-
-const dummyNewsData = Array.from({ length: 20 }, (_, i) => ({
-  id: i + 1,
-  title: `Articles Title ${i + 1}: Articlesddadwadcafhlj`,
-  description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sed quasi est. Mollitia tempora neque porro enim minima at. Consequatur, obcaecati asperiores odio quasi architecto molestiae accusantium repellat nam possimus?",
-  imageUrl: `https://picsum.photos/180/120?random=${12 + i}`,
-}));
+import {Link} from "react-router-dom";
+import BeritaNEWS from "../Widget/BeritaNEWS";
 
 const ArtikelPage = () => {
+
   const [page, setPage] = useState(1);
-  const itemsPerPage = 4;
-  const totalPages = Math.ceil(dummyNewsData.length / itemsPerPage);
+  const [artikelData, setArtikelData] = useState([]); 
+  const itemsPerPage = 5;
+
+  useEffect(() => {
+    fetch(
+      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ req: "artikel" }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setArtikelData(data.artikel);
+        console.log(data.artikel);
+      })
+      .catch((error) => console.error("Error fetching berita data:", error));
+  }, []);
+
+  const totalPages = Math.ceil(artikelData.length / itemsPerPage);
 
   const handleChangePage = (event, value) => {
     setPage(value);
   };
 
-  const newsToDisplay = dummyNewsData.slice(
+  const artikelToDisplay = artikelData.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
+
+  const getImageSrcFromIsiPost = (isiPost) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(isiPost, "text/html");
+    const imgElement = doc.querySelector("img");
+    return imgElement ? imgElement.src : null;
+  };
 
   return (
     <div className="pt-4">
@@ -32,23 +55,35 @@ const ArtikelPage = () => {
           <Typography variant="fontH1">Artikel</Typography>
           <div>
             <div>
-              {newsToDisplay.map((news) => (
-                <div
-                  key={news.id}
-                  className="border rounded-lg overflow-hidden shadow-lg flex flex-row my-4 lg:my-2"
-                >
-                  <img
-                    src={news.imageUrl}
-                    alt={`News ${news.id}`}
-                    className="w-1/3 h-auto object-fit"
-                  />
-                  <div className="p-2">
-                    <Typography variant="fontH2">{news.title}</Typography>
-                    <br />
-                    <Typography variant="teks">{news.description}</Typography>
-                  </div>
-                </div>
-              ))}
+              {artikelToDisplay.map((artikel) => {
+                const NewsImageUnique = getImageSrcFromIsiPost(artikel.isi_post);
+                const imageUrl =
+                  NewsImageUnique ||
+                  `${process.env.VUE_APP_API_URL}/image/posting/artikel/${process.env.VUE_APP_OPD_ID}/original/${artikel.post_gambar}`;
+
+                return (
+                  <Link to={`/artikel/${artikel.id}`} key={artikel.id}>
+                    <div className="border rounded-lg  shadow-lg flex flex-row mb-4">
+                      {imageUrl && (
+                        <img
+                          src={imageUrl}
+                          alt={`News ${artikel.id}`}
+                          className="w-64 h-auto object-fit"
+                          onError={(e) => (e.target.style.display = "none")}
+                        />
+                      )}
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold mb-2 overflow-hidden">
+                          {artikel.judul_post}
+                        </h3>
+                        <p className="text-gray-700 text-base line-clamp-3 overflow-hidden">
+                          {artikel.tanggal_terbit} - Oleh {artikel.penulis}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
             <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
               <Pagination
@@ -61,8 +96,8 @@ const ArtikelPage = () => {
           </div>
         </div>
 
-        <div className="w-full lg:w-2/5 pl-8 pt-8">
-          <div>
+        <div className="w-full lg:w-2/5 pl-8">
+          {/* <div>
             <Typography variant="fontH1">Video Terbaru</Typography>
             <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4">
               <iframe
@@ -75,21 +110,8 @@ const ArtikelPage = () => {
                 allowFullScreen
               ></iframe>
             </div>
-          </div>
-          <div className="pt-8 ">
-            <Typography variant="fontH1">Berita Terbaru</Typography>
-            <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4">
-              <iframe
-                width="80%"
-                height="200"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
+          </div> */}
+          <BeritaNEWS/>
         </div>
       </div>
 
