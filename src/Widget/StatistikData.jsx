@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -40,8 +40,6 @@ const StatistikData = () => {
         setDataStatistik(data.Grafik.filter(item => item.jenis_file === "Grafik"));
         console.log(dataStatistik);
         console.log("dasdawdaw");
-
-
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
@@ -75,14 +73,14 @@ const StatistikData = () => {
   };
 
   return (
-    <div>
+    <>
       {hasLineChartData && (
-        <div className="w-2/3 bg-gray-100">
+        <div className="w-1/2">
           {/* <h2 className="text-center">{dataStatistik[0]?.judul || "Statistik"}</h2> */}
           <Line data={lineChartData} options={lineChartOptions} />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -34,9 +34,9 @@ const PetaLokasi = () => {
   return (
     <div>
       {hasMapData && (
-        <div className="w-2/3 bg-gray-100 p-8">
+        <div className="w-full p-2">
           <h2 className="text-h2 text-center pb-2">{judul}</h2>
-          <MapContainer center={[0.9278868, 104.4434775]} zoom={13} style={{ height: "300px", width: "100%", zIndex: 0 }}>
+          <MapContainer center={[0.9278868, 104.4434775]} zoom={13} style={{ height: "500px", width: "100%", zIndex: 0 }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
