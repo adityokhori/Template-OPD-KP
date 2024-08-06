@@ -22,7 +22,7 @@ const WidgetKominfo = () => {
       <div className="fixed top-2/3 right-6 ">
         <button
           onClick={() => setShowModal(true)}
-          className="px-4 py-2 bg-gray-900 text-white rounded hover:bg-blue-700 transform rotate-90 origin-right"
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transform rotate-90 origin-right"
         >
           GPR Kominfo
         </button>

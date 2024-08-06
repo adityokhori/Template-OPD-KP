@@ -1,48 +1,71 @@
-import React from "react";
-import {Box, Typography} from "@mui/material";
-import { Link } from "react-router-dom";
-
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React, { useEffect, useState } from "react";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper, Typography, Link } from "@mui/material";
 
 const Pranala2 = () => {
-  const imageUrls = [
-    "https://picsum.photos/120/60?random=1",
-    "https://picsum.photos/120/60?random=2",
-    "https://picsum.photos/120/60?random=3",
-    "https://picsum.photos/120/60?random=4",
-    "https://picsum.photos/120/60?random=5",
-    "https://picsum.photos/120/60?random=6",
-    "https://picsum.photos/120/60?random=7",
-    "https://picsum.photos/120/60?random=8",
-    "https://picsum.photos/120/60?random=9",
-    "https://picsum.photos/120/60?random=10",
-    "https://picsum.photos/120/60?random=11",
-    "https://picsum.photos/120/60?random=12",
-  ];
+  const [pranalaData, setPranalaData] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(3);
+
+  useEffect(() => {
+    fetch(`${process.env.VUE_APP_API_URL}api/getMainPageInfo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ kunker: `${process.env.VUE_APP_OPD_ID}` }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setPranalaData(data.pranala_luar.internal);
+      })
+      .catch((error) =>
+        console.error("Error fetching pranala data:", error)
+      );
+  }, []);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const paginatedData = pranalaData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <div className="p-6">
-        
-      <Carousel
-        showThumbs={false}
-        showStatus={false}
-        showIndicators={false}
-        autoPlay={true}
-        infiniteLoop={true}
-        centerMode={true}
-        centerSlidePercentage={30}
-        showArrows={true}
-      >
-        {imageUrls.map((url, index) => (
-          <Link to="/halo" key={index}>
-            <div key={index} className="p-4 bg-gray-200">
-              <img src={url} alt={`Random ${index + 1}`} />
-            </div>
-          </Link>
-        ))}
-      </Carousel>
+    <div className="p-2">
+      <h1 className="text-h2 mb-4">Pranala Internal Pemerintah Kota Tanjungpinang</h1>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableBody>
+            {paginatedData.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell>
+                  <img src= "src/assets/logo-tpi.png" style={{ maxWidth: 30 }} />
+                </TableCell>
+                <TableCell>
+                  <Link href={item.alamat_pranala_http} target="_blank" rel="noopener noreferrer">
+                    {item.nama_pranala}
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={pranalaData.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </TableContainer>
     </div>
   );
 };
+
 export default Pranala2;

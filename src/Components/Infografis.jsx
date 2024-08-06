@@ -44,7 +44,8 @@ const Infografis = () => {
         selectedItem={1} // Adjust the initial slide to center the images
       >
         {infografisData.map((item, index) => (
-          <Link to={`/infografis/${item.guid}`} key={index}>
+          <Link to="/infografis">
+          
             <div className="p-1 lg:p-2">
               <img
                 src={`${process.env.VUE_APP_API_URL}/api/getDownloadInfografis/${process.env.VUE_APP_OPD_ID}/${item.guid_gambar}`}

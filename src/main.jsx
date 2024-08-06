@@ -14,7 +14,10 @@ import GalleryPage from "./Pages/GalleryPage";
 import ArtikelPage from "./Pages/ArtikelPage";
 import BeritaView from "./Pages/BeritaView";
 import ArtikelView from "./Pages/ArtikelView";
-
+import DownloadAreaView from "./Pages/DownloadAreaView";
+import GalleryView from "./Pages/GalleryView";
+import InfografisAlbum from "./Pages/InfografisAlbum";
+import InfografisView from "./Pages/InfografisView";
 
 
 const AppLayout = () => {
@@ -51,12 +54,24 @@ const router = createBrowserRouter([
         element: <PengumumanPage />,
       },
       {
-        path: "/kalendar_even",
+        path: "/infografis",
+        element: <InfografisAlbum/>,
+      },
+      {
+        path: "/infografis/:id",
+        element: <InfografisView/>,
+      },
+      {
+        path: "/kalendar even",
         element: <KalenderPage />,
       },
       {
         path: "/gallery",
         element: <GalleryPage />,
+      },
+      {
+        path: "/gallery/:id",
+        element: <GalleryView />,
       },
       {
         path: "/artikel",
@@ -65,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/artikel/:id",
         element: <ArtikelView />,
+      },
+      {
+        path: "/download area",
+        element: <DownloadAreaView/>,
       },
     ],
   },

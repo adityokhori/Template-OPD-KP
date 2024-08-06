@@ -53,7 +53,7 @@ const Berita = () => {
     <div className="w-full pt-12 scale-95">
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start pt-4 ">
         <div className="w-full lg:w-1/2 ">
-          <div className=" flex flex-row justify-start items-start lg:items-center pb-4">
+          <div className=" flex justify-start items-center lg:items-center pb-4">
             <Typography variant="fontH2">Berita Terkini Diskominfo</Typography>
           </div>
           <Link to={`/berita/${beritaTerbaru.id}`}>

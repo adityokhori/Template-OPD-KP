@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Typography, Container } from "@mui/material";
 import FooterPage from "./FooterPage";
+import BeritaHorizontal from "../Widget/BeritaHorizontal";
 
 const BeritaView = () => {
   const { id } = useParams(); // Get the news ID from the URL
@@ -20,9 +21,7 @@ const BeritaView = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        const selectedNews = data.berita.find(
-          (item) => item.id === id
-        );
+        const selectedNews = data.berita.find((item) => item.id === id);
         setNews(selectedNews);
       })
       .catch((error) => console.error("Error fetching berita data:", error));
@@ -32,10 +31,9 @@ const BeritaView = () => {
     return <Typography>Loading...</Typography>;
   }
 
-  const imageUrl =
-    news.post_gambar 
-      ? `${process.env.VUE_APP_API_URL}/image/posting/berita/${process.env.VUE_APP_OPD_ID}/original/${news.post_gambar}`
-      : null;
+  const imageUrl = news.post_gambar
+    ? `${process.env.VUE_APP_API_URL}/image/posting/berita/${process.env.VUE_APP_OPD_ID}/original/${news.post_gambar}`
+    : null;
 
   return (
     <div className="pt-16">
@@ -63,9 +61,9 @@ const BeritaView = () => {
             />
           </Typography>
         </Box>
+        <BeritaHorizontal/>
       </Container>
 
-      {/* footer */}
       <FooterPage />
     </div>
   );

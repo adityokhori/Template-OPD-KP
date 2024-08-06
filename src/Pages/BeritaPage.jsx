@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Typography,
-  Pagination,
-} from "@mui/material";
+import { Box, Typography, Pagination } from "@mui/material";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import FooterPage from "./FooterPage";
+import BeritaPopuler from "../Widget/BeritaPopuler";
+import BeritaHorizontal from "../Widget/BeritaHorizontal";
 
 const BeritaPage = () => {
   const [page, setPage] = useState(1);
-  const [newsData, setNewsData] = useState([]); 
+  const [newsData, setNewsData] = useState([]);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -36,6 +34,10 @@ const BeritaPage = () => {
 
   const handleChangePage = (event, value) => {
     setPage(value);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const newsToDisplay = newsData.slice(
@@ -52,12 +54,11 @@ const BeritaPage = () => {
 
   return (
     <div className="pt-4">
-      <div className="w-full flex flex-col lg:flex-row p-8 lg:p-20 ">
+      <div className="w-full flex flex-col lg:flex-row p-8 lg:p-20">
         {/* berita */}
         <div className="w-full lg:w-3/5">
-          <Typography variant="fontH1">Berita</Typography>
-
-          <div className="w-full h-1/2 p-4 ">
+          <div className="w-full h-1/2 p-4">
+            <Typography variant="fontH1">Berita</Typography>
             <div className="space-y-4">
               {newsToDisplay.map((news) => {
                 const NewsImageUnique = getImageSrcFromIsiPost(news.isi_post);
@@ -67,7 +68,7 @@ const BeritaPage = () => {
 
                 return (
                   <Link to={`/berita/${news.id}`} key={news.id}>
-                    <div className="border rounded-lg  shadow-lg flex flex-row mb-4">
+                    <div className="border rounded-lg shadow-lg flex flex-row mb-4">
                       {imageUrl && (
                         <img
                           src={imageUrl}
@@ -100,23 +101,10 @@ const BeritaPage = () => {
             </Box>
           </div>
         </div>
-        <div className="w-full pt-8 lg:w-2/5 lg:pt-0 ">
-          <Typography variant="fontH1">Video Terbaru</Typography>
-          <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4 mt-4">
-            <iframe
-              width="80%"
-              height="200"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+        <div className="w-full pt-8 lg:w-2/5 lg:pt-0">
+          <BeritaPopuler />
         </div>
       </div>
-
-      {/* footer */}
       <FooterPage />
     </div>
   );
