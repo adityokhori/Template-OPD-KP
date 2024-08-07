@@ -18,7 +18,7 @@ import DownloadAreaView from "./Pages/DownloadAreaView";
 import GalleryView from "./Pages/GalleryView";
 import InfografisAlbum from "./Pages/InfografisAlbum";
 import InfografisView from "./Pages/InfografisView";
-
+import PagesView from "./Pages/PagesView";
 
 const AppLayout = () => {
   return (
@@ -55,11 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/infografis",
-        element: <InfografisAlbum/>,
+        element: <InfografisAlbum />,
       },
       {
         path: "/infografis/:id",
-        element: <InfografisView/>,
+        element: <InfografisView />,
       },
       {
         path: "/kalendar even",
@@ -83,11 +83,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/download area",
-        element: <DownloadAreaView/>,
+        element: <DownloadAreaView />,
+      },
+      {
+        path: "/pages/:route/:routes/:id",
+        element: <PagesView/>,
       },
     ],
   },
 ]);
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

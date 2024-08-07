@@ -53,7 +53,7 @@ const Nav = () => {
         const menuItems = data.menu.lsmenu.map((item) => ({
           name: item.nama_menu,
           link: `/${item.nama_menu.toLowerCase()}`,
-          submenu: item.submenu || [], // Check if item has submenu
+          submenu: item.submenu || [], 
         }));
         setMenuData(menuItems);
       })
@@ -107,7 +107,7 @@ const Nav = () => {
                     {link.submenu.map((subLink) => (
                       <li key={subLink.nama_menu} className="my-1">
                         <Link
-                          to={`/${subLink.nama_menu.toLowerCase()}`}
+                          to={`/pages/${subLink.route}/${subLink.id_post}`}
                           className="block px-4 py-2 hover:bg-gray-200"
                           onClick={() => handleLinkClick(subLink.nama_menu)}
                         >

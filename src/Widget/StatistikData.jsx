@@ -75,7 +75,7 @@ const StatistikData = () => {
   return (
     <>
       {hasLineChartData && (
-        <div className="w-1/2">
+        <div>
           {/* <h2 className="text-center">{dataStatistik[0]?.judul || "Statistik"}</h2> */}
           <Line data={lineChartData} options={lineChartOptions} />
         </div>

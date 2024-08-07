@@ -85,7 +85,7 @@ const DownloadAreaView = () => {
                   <TableRow
                     key={item.id}
                     component={Link}
-                    to={`${process.env.VUE_APP_API_URL}/api/getDownloadArea/${process.env.VUE_APP_OPD_ID}/${item.guid}`}
+                    to={`${process.env.VUE_APP_API_URL}api/getDownloadArea/${process.env.VUE_APP_OPD_ID}/${item.guid}`}
                     target="_blank"
                     style={{ textDecoration: "none", color: "inherit" }}
                     hover
