@@ -89,6 +89,10 @@ const router = createBrowserRouter([
         path: "/pages/:route/:routes/:id",
         element: <PagesView/>,
       },
+      {
+        path: "/pages/:route/:id",
+        element: <PagesView/>,
+      },
     ],
   },
 ]);

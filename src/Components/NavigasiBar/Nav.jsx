@@ -53,7 +53,9 @@ const Nav = () => {
         const menuItems = data.menu.lsmenu.map((item) => ({
           name: item.nama_menu,
           link: `/${item.nama_menu.toLowerCase()}`,
-          submenu: item.submenu || [], 
+          link2: `/${item.route}`,
+          id2: item.id_post,
+          submenu: item.submenu || [],
         }));
         setMenuData(menuItems);
       })
@@ -83,10 +85,7 @@ const Nav = () => {
 
         <div className="flex flex-col lg:flex-row justify-center items-center">
           {menuData.map((link) => (
-            <li
-              key={link.name}
-              className="md:ml-8 md:my-0 my-7 relative"
-            >
+            <li key={link.name} className="md:ml-8 md:my-0 my-7 relative">
               {link.submenu.length > 0 ? (
                 <>
                   <button
@@ -107,7 +106,11 @@ const Nav = () => {
                     {link.submenu.map((subLink) => (
                       <li key={subLink.nama_menu} className="my-1">
                         <Link
-                          to={`/pages/${subLink.route}/${subLink.id_post}`}
+                          to={
+                            subLink.route
+                              ? `/pages/${subLink.route}/${subLink.id_post}`
+                              : subLink.hyperlink || "#"
+                          }
                           className="block px-4 py-2 hover:bg-gray-200"
                           onClick={() => handleLinkClick(subLink.nama_menu)}
                         >
@@ -119,7 +122,11 @@ const Nav = () => {
                 </>
               ) : (
                 <Link
-                  to={link.link}
+                  to={
+                    link.link2 && link.id2
+                      ? `/pages${link.link2}/${link.id2}`
+                      : `/${link.name.toLowerCase()}`
+                  }
                   className={`${
                     activeLink === link.name ? "text-blue-600" : "text-black"
                   } hover:text-blue-600 py-1 duration-500`}
