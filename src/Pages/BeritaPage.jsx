@@ -54,7 +54,7 @@ const BeritaPage = () => {
 
   return (
     <div className="pt-4">
-      <div className="w-full flex flex-col lg:flex-row p-8 lg:p-20">
+      <div className="w-full flex flex-col lg:flex-row p-8 lg:p-20 space-x-4">
         {/* berita */}
         <div className="w-full lg:w-3/5">
           <div className="w-full h-1/2 p-4">

@@ -20,15 +20,18 @@ const Infografis = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setInfografisData(
-          data.infografis_album.filter((item) => item.guid_gambar !== null)
+        const filteredData = data.infografis_album.filter(
+          (item) => item.guid_gambar !== null
         );
-        console.log(
-          `${process.env.VUE_APP_API_URL}/api/getDownloadInfografis/${process.env.VUE_APP_OPD_ID}/${data.infografis_album[0].guid_gambar}`
-        );
+        setInfografisData(filteredData);
       })
       .catch((error) => console.error("Error fetching infografis data:", error));
   }, []);
+
+  // Return null or a placeholder component if infografisData is empty
+  if (infografisData.length === 0) {
+    return null; // Or you can return a placeholder, e.g., <div>No infographics available</div>
+  }
 
   return (
     <div className="flex flex-col items-center p-2 lg:p-6 bg-primary">
@@ -44,8 +47,7 @@ const Infografis = () => {
         selectedItem={1} // Adjust the initial slide to center the images
       >
         {infografisData.map((item, index) => (
-          <Link to="/infografis">
-          
+          <Link to="/infografis" key={index}>
             <div className="p-1 lg:p-2">
               <img
                 src={`${process.env.VUE_APP_API_URL}/api/getDownloadInfografis/${process.env.VUE_APP_OPD_ID}/${item.guid_gambar}`}

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import FooterPage from "./FooterPage";
+import EventIcon from "@mui/icons-material/Event";
+import PersonIcon from "@mui/icons-material/Person";
+import { Box, Typography, Container } from "@mui/material";
 
 const PagesView = () => {
   const [pageData, setPageData] = useState(null);
@@ -43,20 +46,21 @@ const PagesView = () => {
     : null;
 
   return (
-    <div className="pt-20">
+    <div className="mt-4 pt-20">
       <div className="mx-14 flex flex-col justify-center items-center p-6 bg-gray-100">
         <h1 className="text-h1">{pageData.judul_post}</h1>
         <div className="flex flex-row mt-2">
           <img src={imageUrl} />
           <div className="px-4 flex flex-col">
             <div dangerouslySetInnerHTML={{ __html: pageData.isi_post }} />
-            <div className="flex flex-row space-x-2 pt-4">
-              <p>
-                {pageData.tanggal_tulis}
-              </p>
-              <p>
-                <strong>oleh:</strong> {pageData.penulis}
-              </p>
+            <div className="flex flex-row space-x-2 pt-16">
+              <Typography>
+                <EventIcon fontSize="small" /> {pageData.tanggal_tulis}
+              </Typography>
+              <Typography>
+                <PersonIcon fontSize="small" /> <strong>oleh:</strong>{" "}
+                {pageData.penulis}
+              </Typography>
             </div>
           </div>
         </div>

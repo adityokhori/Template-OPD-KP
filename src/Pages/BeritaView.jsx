@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { Box, Typography, Container } from "@mui/material";
 import FooterPage from "./FooterPage";
 import BeritaHorizontal from "../Widget/BeritaHorizontal";
+import BeritaPopuler from "../Widget/BeritaPopuler";
+import EventIcon from "@mui/icons-material/Event";
+import PersonIcon from "@mui/icons-material/Person";
 
 const BeritaView = () => {
   const { id } = useParams(); // Get the news ID from the URL
@@ -37,32 +40,48 @@ const BeritaView = () => {
 
   return (
     <div className="pt-16">
-      <Container>
-        <Box sx={{ my: 4 }}>
-          <Typography variant="h3" component="h1" gutterBottom>
-            {news.judul_post}
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {news.tanggal_terbit} - by {news.penulis}
-          </Typography>
-          {imageUrl && (
-            <Box my={4} textAlign="center">
-              <img
-                src={imageUrl}
-                alt={news.judul_post}
-                className="max-w-full h-auto"
+      <div className="my-8 mx-16">
+        <div className="flex flex-row space-x-8">
+          <div className="w-2/3">
+            <Typography variant="h3" component="h1" gutterBottom>
+              {news.judul_post}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="textSecondary"
+              display="flex"
+              alignItems="center"
+            >
+              <EventIcon fontSize="small" style={{ marginRight: 4 }} />
+              {news.tanggal_terbit} -
+              <PersonIcon
+                fontSize="small"
+                style={{ marginLeft: 8, marginRight: 4 }}
               />
-            </Box>
-          )}
-          <Typography variant="body1" component="div" sx={{ mt: 4 }}>
-            <div
-              dangerouslySetInnerHTML={{ __html: news.isi_post }}
-              className="leading-relaxed"
-            />
-          </Typography>
-        </Box>
-        <BeritaHorizontal/>
-      </Container>
+              {news.penulis}
+            </Typography>
+            {imageUrl && (
+              <Box my={4} textAlign="center">
+                <img
+                  src={imageUrl}
+                  alt={news.judul_post}
+                  className="max-w-full h-auto"
+                />
+              </Box>
+            )}
+            <Typography variant="body1" component="div" sx={{ mt: 4 }}>
+              <div
+                dangerouslySetInnerHTML={{ __html: news.isi_post }}
+                className="leading-relaxed"
+              />
+            </Typography>
+          </div>
+          <div className="w-1/3">
+            <BeritaPopuler />
+          </div>
+        </div>
+        <BeritaHorizontal />
+      </div>
 
       <FooterPage />
     </div>

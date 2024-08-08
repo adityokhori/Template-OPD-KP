@@ -18,6 +18,8 @@ const Nav = () => {
   const handleLinkClick = (name) => {
     setActiveLink(name);
     setOpen(false);
+    // Close all dropdowns
+    setDropdownsOpen({});
   };
 
   const toggleDropdown = (name) => {
@@ -83,18 +85,18 @@ const Nav = () => {
           </div>
         </Link>
 
-        <div className="flex flex-col lg:flex-row justify-center items-center">
+        <div className="flex flex-col lg:flex-row justify-end items-center">
           {menuData.map((link) => (
-            <li key={link.name} className="md:ml-8 md:my-0 my-7 relative">
+            <li key={link.name} className="md:ml-4 md:my-0 my-7 relative">
               {link.submenu.length > 0 ? (
                 <>
                   <button
                     onClick={() => toggleDropdown(link.name)}
                     className={`flex items-center ${
                       activeLink === link.name ? "text-blue-600" : "text-black"
-                    } hover:text-blue-600 py-1 duration-500`}
+                    } hover:text-blue-600  duration-500`}
                   >
-                    {link.name} <IoChevronDown className="ml-2" />
+                    {link.name} <IoChevronDown className="ml-0" />
                   </button>
                   <ul
                     className={`absolute left-0 mt-2 bg-white shadow-lg rounded-lg transition-transform duration-300 ${
@@ -104,7 +106,7 @@ const Nav = () => {
                     }`}
                   >
                     {link.submenu.map((subLink) => (
-                      <li key={subLink.nama_menu} className="my-1">
+                      <li key={subLink.nama_menu} className="my-0">
                         <Link
                           to={
                             subLink.route
@@ -112,7 +114,9 @@ const Nav = () => {
                               : subLink.hyperlink || "#"
                           }
                           className="block px-4 py-2 hover:bg-gray-200"
-                          onClick={() => handleLinkClick(subLink.nama_menu)}
+                          onClick={() => {
+                            handleLinkClick(subLink.nama_menu);
+                          }}
                         >
                           {subLink.nama_menu}
                         </Link>
@@ -129,7 +133,7 @@ const Nav = () => {
                   }
                   className={`${
                     activeLink === link.name ? "text-blue-600" : "text-black"
-                  } hover:text-blue-600 py-1 duration-500`}
+                  } hover:text-blue-600 duration-500`}
                   onClick={() => handleLinkClick(link.name)}
                 >
                   {link.name}

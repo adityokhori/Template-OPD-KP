@@ -9,12 +9,12 @@ const Modal = ({ show, onClose, children }) => {
     <div className="fixed inset-0 z-50 overflow-auto bg-smoke-light flex">
       <div className="relative w-full max-w-md ml-auto flex-col flex rounded-lg shadow-xl">
         <button
-          className="absolute top-0 right-0"
+          className="absolute top-2 right-0"
           onClick={onClose}
           aria-label="Close"
         >
           <svg
-            className="h-6 w-6 text-white"
+            className="h-6 w-6 text-white bg-gray-500 rounded-full hover:bg-black"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

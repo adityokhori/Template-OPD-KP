@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -37,9 +37,8 @@ const StatistikData = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setDataStatistik(data.Grafik.filter(item => item.jenis_file === "Grafik"));
-        console.log(dataStatistik);
-        console.log("dasdawdaw");
+        const grafikData = data.Grafik.filter(item => item.jenis_file === "Grafik");
+        setDataStatistik(grafikData);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
@@ -68,16 +67,34 @@ const StatistikData = () => {
       title: {
         display: true,
         text: hasLineChartData ? dataStatistik[0]?.judul || "Grafik Data" : "No Data",
+        font: {
+          size: 20, 
+          weight: 'bold', 
+        },
       },
     },
+  };
+  
+
+  const renderYearlySummary = () => {
+    if (!hasLineChartData) return null;
+
+    return dataStatistik[0]?.excel?.data.map((item, index) => (
+      <div key={index} className="mb-2">
+        <strong>{item["1"]}</strong>: {item["2"]}
+      </div>
+    ));
   };
 
   return (
     <>
       {hasLineChartData && (
         <div>
-          {/* <h2 className="text-center">{dataStatistik[0]?.judul || "Statistik"}</h2> */}
           <Line data={lineChartData} options={lineChartOptions} />
+          <div className="mt-4">
+            <h3 className="text-start mb-3">{`${dataStatistik[0]?.judul}:`}</h3>
+            <div className="text-left">{renderYearlySummary()}</div>
+          </div>
         </div>
       )}
     </>

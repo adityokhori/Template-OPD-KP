@@ -24,8 +24,7 @@ const HomePage = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-  }; 
-  
+  };
 
   return (
     <div className="pt-28">
@@ -35,9 +34,13 @@ const HomePage = () => {
         <Berita />
         <Infografis />
       </div>
-      <div className="p-8 space-x-8 flex flex-row justify-center items-center">
-        <StatistikData/>
-        <PetaLokasi/>
+      <div className="p-8 mx-8 flex flex-row justify-center items-center">
+        <div className="w-1/2">
+          <StatistikData />
+        </div>
+        <div className="w-1/2">
+          <PetaLokasi />
+        </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 py-4 mx-10">
         <Pranala1 />

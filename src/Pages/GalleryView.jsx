@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { useParams, Link } from "react-router-dom";
+import { Typography, Button } from "@mui/material";
 import FooterPage from "./FooterPage";
 
 const GalleryView = () => {
@@ -34,11 +34,30 @@ const GalleryView = () => {
 
   return (
     <div className="pt-24">
-      <div className="px-10">
+      <div className="px-10 flex flex-col justify-start items-start">
         <Typography variant="fontH1">Gallery :</Typography>
-        {galleryData.length > 0 && (
-          <Typography variant="fontH1">  {galleryData[0].judul_album}</Typography>
-        )}
+        <div className="flex flex-row justify-between items-center">
+          {galleryData.length > 0 && (
+            <Typography variant="fontH1">
+              {" "}
+              {galleryData[0].judul_album}
+            </Typography>
+          )}
+          <Button
+            variant="contained"
+            component={Link}
+            to="/gallery"
+            sx={{
+              ml: 2,
+              bgcolor: "secondary.main",
+              "&:hover": {
+                bgcolor: "secondary.dark",
+              },
+            }}
+          >
+            <Typography variant="teksButton">Selengkapnya</Typography>
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-col justify-center items-center px-12 pb-8">

@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const CarouselHome = () => {
-  const imageUrls = [
-    "https://picsum.photos/400/150?random=1",
-    "https://picsum.photos/400/150?random=2",
-    "https://picsum.photos/400/150?random=3",
-    "https://picsum.photos/400/150?random=4",
-    "https://picsum.photos/400/150?random=5",
-    "https://picsum.photos/400/150?random=6",
-  ];
+  const [carouselData, setCarouselData] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `${process.env.VUE_APP_API_URL}/api/getOPDInfo`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ kunker: process.env.VUE_APP_OPD_ID }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data.banner) && data.banner.length > 0) {
+          setCarouselData(data.banner);
+        } else {
+          setCarouselData([]); 
+        }
+      })
+      .catch((error) => console.error("Error fetching carousel home data:", error));
+  }, []);
+
+  if (carouselData.length === 0) {
+    return null;
+  }
 
   return (
-    <div>
+    <div className="pb-4">
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -22,17 +41,20 @@ const CarouselHome = () => {
         autoPlay={true}
         infiniteLoop={true}
       >
-        {imageUrls.map((url, index) => (
-          <Link to="/halo" key={index}>
-            <div >
-              <img
-                src={url}
-                alt={`Random ${index + 1}`}
-                className="object-fit"
-              />
-            </div>
-          </Link>
-        ))}
+        {carouselData.map((imageName, index) => {
+          console.log(`Image Name [${index}]:`, imageName);
+          return (
+            <Link to="/halo" key={index}>
+              <div>
+                <img
+                  src={`${process.env.VUE_APP_API_URL}/image/banner/${process.env.VUE_APP_OPD_ID}/${imageName}`}
+                  alt={`Banner ${index}`} 
+                  className="object-fit"
+                />
+              </div>
+            </Link>
+          );
+        })}
       </Carousel>
     </div>
   );

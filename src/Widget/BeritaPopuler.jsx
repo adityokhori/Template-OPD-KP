@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility"; // Import the icon
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const BeritaPopuler = () => {
   const [berita, setBerita] = useState([]);
@@ -27,7 +27,6 @@ const BeritaPopuler = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        // Sort berita berdasarkan jumlah klik dalam urutan menurun dan ambil 5 teratas
         const sortedBerita = data.berita
           .sort((a, b) => b.jum_klik - a.jum_klik)
           .slice(0, 5);
@@ -54,24 +53,23 @@ const BeritaPopuler = () => {
       <TableContainer component={Paper}>
         <Table>
           <TableBody>
-            {berita.map((item, index) => {
-              const mainNewsImage = getImageSrcFromIsiPost(item.isi_post);
-              return (
-                <TableRow key={item.id}>
+            {berita.map((item, index) => (
+              <TableRow key={item.id} className="hover:bg-gray-100">
+                <Link to={`/berita/${item.id}`} className="contents" >
                   <TableCell>{index + 1}</TableCell>
+                  <TableCell>{item.judul_post}</TableCell>
                   <TableCell>
-                    <Link to={`/berita/${item.id}`}>{item.judul_post}</Link>
+                    <div className="flex items-center">
+                      <VisibilityIcon
+                        fontSize="small"
+                        style={{ marginRight: 4 }}
+                      />
+                      {item.jum_klik}
+                    </div>
                   </TableCell>
-                  <TableCell className="flex flex-row justify-start items-center align-">
-                    <VisibilityIcon
-                      fontSize="small"
-                      style={{ marginRight: 4}}
-                    />
-                    {item.jum_klik}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                </Link>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
