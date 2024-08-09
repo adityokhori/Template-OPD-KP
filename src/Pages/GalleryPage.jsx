@@ -99,20 +99,20 @@ const GalleryPage = () => {
           <TableContainer component={Paper} className="w-full py-4">
             <Table>
               <TableHead>
-                <TableRow className="bg-gray-300">
+                <TableRow className="bg-gray-500">
                   <TableCell>
-                    <Typography className="font-bold">No</Typography>
+                    <h2 className="font-bold text-white">No</h2>
                   </TableCell>
                   <TableCell>
-                    <Typography className="font-bold">Judul Album</Typography>
+                    <h2 className="font-bold text-white">Judul Album</h2>
                   </TableCell>
                   <TableCell>
-                    <Typography className="font-bold">Keterangan</Typography>
+                    <h2 className="font-bold text-white">Keterangan</h2>
                   </TableCell>
                   <TableCell>
-                    <Typography className="font-bold">
+                    <h2 className="font-bold text-white">
                       Tanggal Terbit
-                    </Typography>
+                    </h2>
                   </TableCell>
                 </TableRow>
               </TableHead>

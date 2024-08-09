@@ -46,7 +46,7 @@ const PagesView = () => {
     : null;
 
   return (
-    <div className="mt-4 pt-20">
+    <div className=" pt-20">
       <div className="mx-14 flex flex-col justify-center items-center p-6 bg-gray-100">
         <h1 className="text-h1">{pageData.judul_post}</h1>
         <div className="flex flex-row mt-2">

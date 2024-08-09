@@ -66,7 +66,7 @@ const Nav = () => {
 
   return (
     <div
-      className={`fixed z-20 shadow-md w-full top-0 left-0 font-bold transition-colors duration-300 ${
+      className={`fixed text-sm z-20 shadow-md w-full top-0 left-0 font-bold transition-colors duration-300 ${
         scrolled ? "bg-white" : "bg-white"
       }`}
     >
@@ -75,17 +75,17 @@ const Nav = () => {
       </div>
 
       <ul
-        className={`px-20 md:flex md:items-center flex flex-col lg:flex-row lg:justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
+        className={` px-16 md:flex md:items-center flex flex-col lg:flex-row lg:justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
           open ? "top-30 bg-white bg-opacity-80" : "top-[-800px]"
         }`}
       >
         <Link to="/">
-          <div className="font-bold text-2xl cursor-pointer flex items-center">
+          <div className="font-bold cursor-pointer flex items-center">
             <img src="/diskominfo_kota.png" className="w-100 h-20" alt="Logo" />
           </div>
         </Link>
 
-        <div className="flex flex-col lg:flex-row justify-end items-center">
+        <div className="flex flex-col lg:flex-row justify-end items-start">
           {menuData.map((link) => (
             <li key={link.name} className="md:ml-4 md:my-0 my-7 relative">
               {link.submenu.length > 0 ? (
@@ -94,9 +94,9 @@ const Nav = () => {
                     onClick={() => toggleDropdown(link.name)}
                     className={`flex items-center ${
                       activeLink === link.name ? "text-blue-600" : "text-black"
-                    } hover:text-blue-600  duration-500`}
+                    } hover:text-blue-600 duration-500 whitespace-nowrap`}
                   >
-                    {link.name} <IoChevronDown className="ml-0" />
+                    {link.name} <IoChevronDown />
                   </button>
                   <ul
                     className={`absolute left-0 mt-2 bg-white shadow-lg rounded-lg transition-transform duration-300 ${
@@ -113,7 +113,7 @@ const Nav = () => {
                               ? `/pages/${subLink.route}/${subLink.id_post}`
                               : subLink.hyperlink || "#"
                           }
-                          className="block px-4 py-2 hover:bg-gray-200"
+                          className=" block px-4 py-2 hover:bg-gray-200"
                           onClick={() => {
                             handleLinkClick(subLink.nama_menu);
                           }}
@@ -133,7 +133,7 @@ const Nav = () => {
                   }
                   className={`${
                     activeLink === link.name ? "text-blue-600" : "text-black"
-                  } hover:text-blue-600 duration-500`}
+                  } hover:text-blue-600 duration-500 whitespace-nowrap`}
                   onClick={() => handleLinkClick(link.name)}
                 >
                   {link.name}
@@ -142,7 +142,7 @@ const Nav = () => {
             </li>
           ))}
 
-          <div className="lg:pl-20 flex flex-row justify-center items-center">
+          <div className="lg:pl-8 flex flex-row justify-center items-center">
             <div>
               <a
                 href="https://icms.tanjungpinangkota.go.id/login"

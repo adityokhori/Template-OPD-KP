@@ -35,11 +35,9 @@ const GalleryView = () => {
   return (
     <div className="pt-24">
       <div className="px-10 flex flex-col justify-start items-start">
-        <Typography variant="fontH1">Gallery :</Typography>
         <div className="flex flex-row justify-between items-center">
           {galleryData.length > 0 && (
-            <Typography variant="fontH1">
-              {" "}
+            <Typography variant="fontH2">
               {galleryData[0].judul_album}
             </Typography>
           )}
@@ -55,7 +53,7 @@ const GalleryView = () => {
               },
             }}
           >
-            <Typography variant="teksButton">Selengkapnya</Typography>
+            <Typography variant="teksButton">Lihat Album</Typography>
           </Button>
         </div>
       </div>

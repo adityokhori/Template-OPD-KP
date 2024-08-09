@@ -51,12 +51,20 @@ const BeritaHorizontal = () => {
   };
 
   return (
-    <div className="pt-4">
-      <div className="w-full flex flex-col p-2 lg:p-8">
+    <div className="pt-4 ">
+      <Box
+        sx={{
+          width: "100%",
+          bgcolor: "primary.main",
+        }}
+        className="w-full flex flex-col p-2 lg:p-8 bg-black"
+      >
         {/* berita */}
         <div className="w-full">
           <div className="flex justify-start items-center align-middle">
-            <Typography variant="fontH1">Berita lainnya</Typography>
+            <Typography variant="fontH1" className="text-white">
+              Berita lainnya
+            </Typography>
             <Button
               variant="contained"
               component={Link}
@@ -81,11 +89,8 @@ const BeritaHorizontal = () => {
 
               return (
                 <Grid item xs={12} sm={6} md={4} key={news.id}>
-                  <Link
-                    to={`/berita/${news.id}`}
-                    onClick={handleChangeNews}
-                  >
-                    <div className="border rounded-lg shadow-lg mb-4">
+                  <Link to={`/berita/${news.id}`} onClick={handleChangeNews}>
+                    <div className="border rounded-lg shadow-lg mb-4 text-white">
                       {imageUrl && (
                         <img
                           src={imageUrl}
@@ -94,11 +99,11 @@ const BeritaHorizontal = () => {
                           onError={(e) => (e.target.style.display = "none")}
                         />
                       )}
-                      <div className="p-4">
-                        <h3 className="text-lg font-bold mb-2 overflow-hidden line-clamp-2">
+                      <div className="p-4 ">
+                        <h3 className="text-lg font-bold mb-2 overflow-hidden line-clamp-2 text-white">
                           {news.judul_post}
                         </h3>
-                        <p className="text-gray-700 text-base line-clamp-2 overflow-hidden">
+                        <p className="text-gray-100 text-base line-clamp-2 overflow-hidden ">
                           {news.isi}
                         </p>
                       </div>
@@ -109,16 +114,55 @@ const BeritaHorizontal = () => {
             })}
           </Grid>
 
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          {/* <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
             <Pagination
               count={totalPages}
               page={page}
               onChange={handleChangePage}
               color="primary"
             />
+          </Box> */}
+
+          {/* <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handleChangePage}
+              color="primary"
+              sx={{
+                "& .MuiPaginationItem-root": {
+                  color: "white",
+                },
+                "& .MuiPaginationItem-root.Mui-selected": {
+                  backgroundColor: "primary.main", // Optional: Adjust the background color for the selected page
+                  color: "white",
+                },
+              }}
+            />
+          </Box> */}
+
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handleChangePage}
+              color="primary"
+              sx={{
+                "& .MuiPaginationItem-root": {
+                  color: "white", // Warna nomor angka
+                },
+                "& .MuiPaginationItem-page.Mui-selected": {
+                  backgroundColor: "gray", // Warna lingkaran penanda nomor yang terpilih
+                  color: "white", // Warna nomor angka yang terpilih
+                },
+                "& .MuiPaginationItem-ellipsis": {
+                  color: "white", // Warna elipsis
+                },
+              }}
+            />
           </Box>
         </div>
-      </div>
+      </Box>
     </div>
   );
 };

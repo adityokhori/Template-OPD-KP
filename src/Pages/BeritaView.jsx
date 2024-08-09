@@ -75,12 +75,16 @@ const BeritaView = () => {
                 className="leading-relaxed"
               />
             </Typography>
+            <br/>
           </div>
           <div className="w-1/3">
             <BeritaPopuler />
           </div>
         </div>
-        <BeritaHorizontal />
+        <div className="py-4 mx-10">
+          <hr className="my-4 border-t border-gray-300" />
+          <BeritaHorizontal />
+        </div>
       </div>
 
       <FooterPage />

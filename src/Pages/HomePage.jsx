@@ -42,11 +42,16 @@ const HomePage = () => {
           <PetaLokasi />
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 py-4 mx-10">
-        <Pranala1 />
-        <Pranala2 />
-        <Pranala3 />
+
+      <div className="py-4 mx-10">
+        <hr className="my-4 border-t border-gray-300" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 py-4">
+          <Pranala1 />
+          <Pranala2 />
+          <Pranala3 />
+        </div>
       </div>
+
       <FooterPage />
       <WidgetKominfo />
     </div>
