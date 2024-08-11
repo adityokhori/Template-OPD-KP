@@ -43,9 +43,6 @@ const MapKominfo = () => {
     return `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=14&output=embed`;
   };
   
-  
-  
-
   return (
     <div className="flex flex-col justify-center items-center">
       <div>

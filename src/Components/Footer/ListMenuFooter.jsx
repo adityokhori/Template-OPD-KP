@@ -36,7 +36,7 @@ const ListMenuFooter = () => {
         <List key={index}>
           <Typography
             variant="h6"
-            className="text-start underline underline-offset-8 decoration-2 decoration-orange-500 px-4"
+            className="text-start underline underline-offset-8 decoration-2 decoration-orange-500 px-2 whitespace-nowrap"
           >
             {menu.parentName}
           </Typography>
@@ -44,7 +44,7 @@ const ListMenuFooter = () => {
             <ListItem key={subIndex}>
               <ListItemText
                 primary={
-                  <Link to={item.link} className="hover:text-orange-500">
+                  <Link to={item.link} className="hover:text-orange-500 ">
                     {item.text}
                   </Link>
                 }
