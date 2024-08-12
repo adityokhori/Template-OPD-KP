@@ -49,6 +49,9 @@ const BeritaNEWS = () => {
   };
 
   const mainNewsImage = getImageSrcFromIsiPost(beritaTerbaru.isi_post);
+  const imageUrl =
+    mainNewsImage ||
+    `${process.env.VUE_APP_API_URL}/image/posting/berita/${process.env.VUE_APP_OPD_ID}/original/${beritaTerbaru.post_gambar}`;
 
   return (
     <div className="w-full lg:w-full">
@@ -58,7 +61,7 @@ const BeritaNEWS = () => {
       <Link to={`/berita/${beritaTerbaru.id}`}>
         <div className="border rounded-lg overflow-hidden shadow-lg">
           <img
-            src={mainNewsImage}
+            src={imageUrl}
             alt={beritaTerbaru.judul_post}
             className="w-full h-auto object-cover"
             onError={(e) => (e.target.src = null)}

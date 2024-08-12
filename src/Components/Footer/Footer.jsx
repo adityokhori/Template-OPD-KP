@@ -29,8 +29,8 @@ const Footer = () => {
     //   {/* div green */}
       <div className="w-full flex flex-row text-white">
 
-        <div className="flex flex-col justify-center items-center w-full">
-          <div className="flex flex-col pt-2">
+        <div className="flex flex-col justify-center items-center w-1/2">
+          <div className="flex flex-col pt-2 ">
 
             <div className="flex flex-row justify-start items-center space-x-2 pb-2">
               <img src="/TPI-Logo.png" className="w-16 lg:w-12 h-auto" />

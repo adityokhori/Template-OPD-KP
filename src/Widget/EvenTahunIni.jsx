@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { format, startOfYear, eachDayOfInterval, isSameDay, getMonth, isWithinInterval } from "date-fns";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
+import { id } from "date-fns/locale"; 
 
 const EvenTahunIni = ({ year }) => {
   const [yearEvents, setYearEvents] = useState([]);
@@ -10,7 +11,7 @@ const EvenTahunIni = ({ year }) => {
   const days = eachDayOfInterval({ start: startDate, end: endDate });
   const today = new Date();
   const months = Array.from({ length: 12 }, (_, i) => i);
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   const colors = [
     "bg-red-500",
@@ -34,7 +35,7 @@ const EvenTahunIni = ({ year }) => {
   const handleMouseLeave = () => setTooltip(null);
 
   const handleMonthClick = (month) => {
-    navigate(`/events/${year}/${month}`); // Navigate to the EvenBulanIni component
+    navigate(`/events/${year}/${month}`); 
   };
 
   useEffect(() => {
@@ -65,18 +66,18 @@ const EvenTahunIni = ({ year }) => {
   const getEventsForDay = (day) => yearEvents.filter((event) => {
     const eventStartDate = new Date(event.tgl_event_mulai);
     const eventEndDate = new Date(event.tgl_event_akhir);
-    return isWithinInterval(day, { start: eventStartDate, end: eventEndDate });
+    return isSameDay(day, eventStartDate) || isWithinInterval(day, { start: eventStartDate, end: eventEndDate });
   });
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {months.map((month) => (
-        <div key={month} className="border p-2 cursor-pointer" onClick={() => handleMonthClick(month)}>
+        <div key={month} className="border p-2 cursor-pointer hover:bg-gray-200" onClick={() => handleMonthClick(month)}>
           <h2 className="text-lg font-bold mb-2">
-            {format(new Date(year, month, 1), "MMMM")}
+            {format(new Date(year, month, 1), "MMMM", { locale: id })}
           </h2>
           <div className="grid grid-cols-7 gap-1 text-center text-sm">
-            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+            {["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"].map((day) => (
               <div key={day} className="font-bold">
                 {day}
               </div>

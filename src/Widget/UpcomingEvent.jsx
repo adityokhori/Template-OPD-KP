@@ -43,7 +43,7 @@ const UpcomingEvent = ({ currentMonth }) => {
   return (
     <div>
       <Typography variant="h6" sx={{ padding: 2 }}>
-        Upcoming Events (Outside This Month)
+        Even lainnya:
       </Typography>
       <div className="shadow-md">
         <Table>

@@ -49,9 +49,9 @@ const PagesView = () => {
     <div className=" pt-20">
       <div className="mx-14 flex flex-col justify-center items-center p-6 bg-gray-100">
         <h1 className="text-h1">{pageData.judul_post}</h1>
-        <div className="flex flex-row mt-2">
-          <img src={imageUrl} />
-          <div className="px-4 flex flex-col">
+        <div className="flex flex-col mt-2 justify-center items-center">
+          <img src={imageUrl} className="w-1/2"/>
+          <div className="px-4 flex flex-col mt-4">
             <div dangerouslySetInnerHTML={{ __html: pageData.isi_post }} />
             <div className="flex flex-row space-x-2 pt-16">
               <Typography>

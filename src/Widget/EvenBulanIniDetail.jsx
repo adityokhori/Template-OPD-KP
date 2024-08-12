@@ -46,13 +46,13 @@ const EvenBulanIniDetail = ({ currentMonth }) => {
                 {event.judul_kalender_event}
               </Typography>
               <Typography color="textSecondary">
-                {event.tgl_event_mulai} - {event.tgl_event_akhir}
+                {event.tanggal_event_mulai} - {event.tanggal_event_akhir}
               </Typography>
-              <Typography variant="body2" component="div">
+              <Typography variant="body2" component="div" className="pt-4">
                 <div dangerouslySetInnerHTML={{ __html: event.ket_kalender_event }} />
               </Typography>
             </div>
-            <div className="w-1/5">
+            <div className="pl-2 w-1/5 flex justify-center items-center">
               <img
                 src={`${process.env.VUE_APP_API_URL}/image/posting/event/${process.env.VUE_APP_OPD_ID}/original/${event.gambar}`}
                 alt={event.judul_kalender_event}

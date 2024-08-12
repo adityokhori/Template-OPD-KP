@@ -20,7 +20,7 @@ import InfografisAlbum from "./Pages/InfografisAlbum";
 import InfografisView from "./Pages/InfografisView";
 import PagesView from "./Pages/PagesView";
 import EvenBulanIni2 from "./Widget/EventBulanIni2";
-
+import PengumumanView from "./Pages/PengumumanView";
 const AppLayout = () => {
   return (
     <div>
@@ -97,6 +97,10 @@ const router = createBrowserRouter([
       {
         path: "/events/:year/:month",
         element: <EvenBulanIni2/>,
+      },
+      {
+        path: "/pengumuman/:id",
+        element: <PengumumanView/>,
       },
     ],
   },

@@ -61,24 +61,28 @@ const GalleryView = () => {
       <div className="flex flex-col justify-center items-center px-12 pb-8">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
           {galleryData.map((item) => (
-            <div
-              key={item.id}
-              className="border rounded-lg overflow-hidden shadow-lg"
-            >
-              <img
-                src={`${process.env.VUE_APP_API_URL}/image/posting/galeri/${process.env.VUE_APP_OPD_ID}/original/${item.gambar}`}
-                alt={item.judul_gallery}
-                className="w-full h-auto object-fit"
-              />
-              <div className="p-4">
-                <h2 className="text-xl font-bold mb-2">{item.judul_gallery}</h2>
-                <p className="text-gray-700 text-base">
-                  {item.ket_gallery.replace(/(<([^>]+)>)/gi, "")}{" "}
-                  {/* Remove HTML tags */}
-                </p>
-                <p className="text-gray-500 text-sm">{item.tgl_gambar}</p>
+            <Link to={`${process.env.VUE_APP_API_URL}/image/posting/galeri/${process.env.VUE_APP_OPD_ID}/original/${item.gambar}`}>
+              <div
+                key={item.id}
+                className="border rounded-lg overflow-hidden shadow-lg"
+              >
+                <img
+                  src={`${process.env.VUE_APP_API_URL}/image/posting/galeri/${process.env.VUE_APP_OPD_ID}/original/${item.gambar}`}
+                  alt={item.judul_gallery}
+                  className="w-full h-auto object-fit"
+                />
+                <div className="p-4">
+                  <h2 className="text-xl font-bold mb-2">
+                    {item.judul_gallery}
+                  </h2>
+                  <p className="text-gray-700 text-base">
+                    {item.ket_gallery.replace(/(<([^>]+)>)/gi, "")}{" "}
+                    {/* Remove HTML tags */}
+                  </p>
+                  <p className="text-gray-500 text-sm">{item.tgl_gambar}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
