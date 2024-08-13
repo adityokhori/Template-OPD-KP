@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Pagination } from "@mui/material";
 import FooterPage from "./FooterPage";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import BeritaNEWS from "../Widget/BeritaNEWS";
+import EventIcon from "@mui/icons-material/Event";
+import PersonIcon from "@mui/icons-material/Person";
 
 const ArtikelPage = () => {
-
   const [page, setPage] = useState(1);
-  const [artikelData, setArtikelData] = useState([]); 
+  const [artikelData, setArtikelData] = useState([]);
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -56,7 +57,9 @@ const ArtikelPage = () => {
           <div>
             <div>
               {artikelToDisplay.map((artikel) => {
-                const NewsImageUnique = getImageSrcFromIsiPost(artikel.isi_post);
+                const NewsImageUnique = getImageSrcFromIsiPost(
+                  artikel.isi_post
+                );
                 const imageUrl =
                   NewsImageUnique ||
                   `${process.env.VUE_APP_API_URL}/image/posting/artikel/${process.env.VUE_APP_OPD_ID}/original/${artikel.post_gambar}`;
@@ -77,7 +80,16 @@ const ArtikelPage = () => {
                           {artikel.judul_post}
                         </h3>
                         <p className="text-gray-700 text-base line-clamp-3 overflow-hidden">
-                          {artikel.tanggal_terbit} - Oleh {artikel.penulis}
+                          <EventIcon
+                            fontSize="small"
+                            style={{ marginRight: 4 }}
+                          />
+                          {artikel.tanggal_terbit} - Oleh{" "}
+                          <PersonIcon
+                            fontSize="small"
+                            style={{ marginRight: 4 }}
+                          />
+                          {artikel.penulis}
                         </p>
                       </div>
                     </div>
@@ -111,7 +123,7 @@ const ArtikelPage = () => {
               ></iframe>
             </div>
           </div> */}
-          <BeritaNEWS/>
+          <BeritaNEWS />
         </div>
       </div>
 

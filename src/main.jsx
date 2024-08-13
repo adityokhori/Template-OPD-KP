@@ -21,11 +21,14 @@ import InfografisView from "./Pages/InfografisView";
 import PagesView from "./Pages/PagesView";
 import EvenBulanIni2 from "./Widget/EventBulanIni2";
 import PengumumanView from "./Pages/PengumumanView";
+import ScrollToTopButton from "./Components/ScrollToTop";
+
 const AppLayout = () => {
   return (
     <div>
       <Navbar />
       <Outlet />
+      <ScrollToTopButton/>
     </div>
   );
 };

@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { format, startOfYear, eachDayOfInterval, isSameDay, getMonth, isWithinInterval } from "date-fns";
-import { useNavigate } from "react-router-dom"; 
-import { id } from "date-fns/locale"; 
+import {
+  format,
+  startOfYear,
+  eachDayOfInterval,
+  isSameDay,
+  getMonth,
+  isWithinInterval,
+} from "date-fns";
+import { useNavigate } from "react-router-dom";
+import { id } from "date-fns/locale";
 
 const EvenTahunIni = ({ year }) => {
   const [yearEvents, setYearEvents] = useState([]);
@@ -35,7 +42,7 @@ const EvenTahunIni = ({ year }) => {
   const handleMouseLeave = () => setTooltip(null);
 
   const handleMonthClick = (month) => {
-    navigate(`/events/${year}/${month}`); 
+    navigate(`/events/${year}/${month}`);
   };
 
   useEffect(() => {
@@ -63,16 +70,24 @@ const EvenTahunIni = ({ year }) => {
     setYearEvents(filteredEvents);
   };
 
-  const getEventsForDay = (day) => yearEvents.filter((event) => {
-    const eventStartDate = new Date(event.tgl_event_mulai);
-    const eventEndDate = new Date(event.tgl_event_akhir);
-    return isSameDay(day, eventStartDate) || isWithinInterval(day, { start: eventStartDate, end: eventEndDate });
-  });
+  const getEventsForDay = (day) =>
+    yearEvents.filter((event) => {
+      const eventStartDate = new Date(event.tgl_event_mulai);
+      const eventEndDate = new Date(event.tgl_event_akhir);
+      return (
+        isSameDay(day, eventStartDate) ||
+        isWithinInterval(day, { start: eventStartDate, end: eventEndDate })
+      );
+    });
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {months.map((month) => (
-        <div key={month} className="border p-2 cursor-pointer hover:bg-gray-200" onClick={() => handleMonthClick(month)}>
+        <div
+          key={month}
+          className="border p-2 cursor-pointer hover:bg-gray-100"
+          onClick={() => handleMonthClick(month)}
+        >
           <h2 className="text-lg font-bold mb-2">
             {format(new Date(year, month, 1), "MMMM", { locale: id })}
           </h2>
@@ -82,41 +97,49 @@ const EvenTahunIni = ({ year }) => {
                 {day}
               </div>
             ))}
-            {Array.from({ length: new Date(year, month, 1).getDay() }).map((_, i) => (
-              <div key={i} className="p-2"></div>
-            ))}
-            {days.filter((day) => getMonth(day) === month).map((day) => {
-              const eventsForDay = getEventsForDay(day);
-              return (
-                <div
-                  key={day}
-                  className={`relative p-1 ${
-                    isSameDay(day, today)
-                      ? "bg-blue-500 text-white rounded-full cursor-default"
-                      : "cursor-default hover:bg-gray-200 hover:text-black rounded"
-                  }`}
-                  onMouseEnter={() => handleMouseEnter(day, eventsForDay)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {format(day, "d")}
-                  {eventsForDay.length > 0 && (
-                    <div className="flex justify-center items-center mt-1 space-x-1">
-                      {eventsForDay.map((event) => (
-                        <span
-                          key={event.id}
-                          className={`w-2 h-2 rounded-full ${getColorForEvent(event.id)}`}
-                        ></span>
-                      ))}
-                    </div>
-                  )}
-                  {tooltip && isSameDay(day, tooltip.date) && (
-                    <div className="absolute z-10 w-40 p-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg transform -translate-x-1/2 left-1/2 mt-2">
-                      {tooltip.description}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+            {Array.from({ length: new Date(year, month, 1).getDay() }).map(
+              (_, i) => (
+                <div key={i} className="p-2"></div>
+              )
+            )}
+            {days
+              .filter((day) => getMonth(day) === month)
+              .map((day) => {
+                const eventsForDay = getEventsForDay(day);
+                return (
+                  <div
+                    key={day}
+                    className={`relative p-1 ${
+                      isSameDay(day, today)
+                        ? "bg-blue-500 text-white rounded-full cursor-default"
+                        : "cursor-default hover:bg-gray-100 hover:text-black rounded"
+                    }`}
+                    onMouseEnter={() => handleMouseEnter(day, eventsForDay)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {format(day, "d")}
+                    {eventsForDay.length > 0 && (
+                      <div className="flex justify-center items-center mt-1 space-x-1">
+                        {eventsForDay.map((event) => (
+                          <span
+                            key={event.id}
+                            className={`w-2 h-2 rounded-full ${getColorForEvent(
+                              event.id
+                            )}`}
+                          ></span>
+                        ))}
+                      </div>
+                    )}
+                    {tooltip &&
+                      isSameDay(day, tooltip.date) &&
+                      tooltip.description && (
+                        <div className="absolute z-10 w-40 p-2 text-sm text-white bg-gray-800 rounded-lg shadow-lg transform -translate-x-1/2 left-1/2 mt-2">
+                          {tooltip.description}
+                        </div>
+                      )}
+                  </div>
+                );
+              })}
           </div>
         </div>
       ))}

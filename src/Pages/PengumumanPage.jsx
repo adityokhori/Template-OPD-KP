@@ -42,6 +42,10 @@ const PengumumanPage = () => {
       });
   }, []);
 
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
+
   const totalPages = Math.ceil(pengumumanPage.length / itemsPerPage);
   const newsToDisplay = pengumumanPage.slice(
     (page - 1) * itemsPerPage,

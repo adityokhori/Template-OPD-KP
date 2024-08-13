@@ -3,10 +3,12 @@ import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
 import FooterPage from "./FooterPage";
 import BeritaNEWS from "../Widget/BeritaNEWS";
 import { useParams } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+
 
 const PengumumanView = () => {
-  const { id } = useParams(); 
-  const [pengumuman, setPengumuman] = useState(null); 
+  const { id } = useParams();
+  const [pengumuman, setPengumuman] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -31,12 +33,12 @@ const PengumumanView = () => {
   }, [id]);
 
   return (
-    <div className="mt-24 w-full">
-      <div className="flex flex-row">
-        <div className="p-2 w-2/3">
+    <div className="mt-24 w-full ">
+      <div className="flex flex-row p-10">
+        <div className="p-2 w-2/3 ">
           {pengumuman ? (
             <Card key={pengumuman.id} sx={{ mb: 2 }}>
-              <Typography variant="fontH1" >
+              <Typography variant="fontH1">
                 {pengumuman.judul_pengumuman}
               </Typography>
               {pengumuman.gambar && (
@@ -52,6 +54,22 @@ const PengumumanView = () => {
                     dangerouslySetInnerHTML={{ __html: pengumuman.isi }}
                     className="leading-relaxed"
                   />
+                </Typography>
+
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="end"
+                  paddingTop={4}
+                >
+                  Penulis:
+                  <PersonIcon
+                    fontSize="small"
+                    style={{ marginLeft: 8, marginRight: 4 }}
+                  />
+                  {pengumuman.penulis}
                 </Typography>
               </CardContent>
             </Card>
@@ -69,7 +87,6 @@ const PengumumanView = () => {
         </div>
       </div>
 
-      {/* footer */}
       <FooterPage />
     </div>
   );

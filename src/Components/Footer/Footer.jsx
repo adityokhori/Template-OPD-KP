@@ -29,7 +29,7 @@ const Footer = () => {
     //   {/* div green */}
       <div className="w-full flex flex-row text-white">
 
-        <div className="flex flex-col justify-center items-center w-1/2">
+        <div className="flex flex-col justify-center items-center w-1/2 ">
           <div className="flex flex-col pt-2 ">
 
             <div className="flex flex-row justify-start items-center space-x-2 pb-2">
@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className=" flex flex-col lg:flex-row justify-between items-start pt-8 lg:pt-8">
+        <div className=" flex flex-col lg:flex-row justify-between items-start pt-8 lg:pt-8 ">
           <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0 w-full">
             <div className="flex-1 ">
               <ListMenuFooter />

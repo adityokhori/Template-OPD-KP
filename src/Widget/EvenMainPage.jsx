@@ -9,23 +9,19 @@ import {
   isWithinInterval,
 } from "date-fns";
 import { id } from "date-fns/locale";
-import { useParams } from "react-router-dom";
 import UpcomingEvent from "./UpcomingEvent";
-import EvenBulanIniDetail from "./EvenBulanIniDetail";
-import { Button, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Typography, Button } from "@mui/material";
 import FooterPage from "../Pages/FooterPage";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import EvenBulanIniDetail from "./EvenBulanIniDetail";
+import {Link} from "react-router-dom";
 
-const EvenBulanIni2 = () => {
-  const { month } = useParams();
-  const currentMonth = parseInt(month, 10);
+const EventMainPage = () => {
   const [currentMonthEvents, setCurrentMonthEvents] = useState([]);
   const [tooltip, setTooltip] = useState(null);
   const today = new Date();
-  const startDate = startOfMonth(
-    new Date(today.getFullYear(), currentMonth, 1)
-  );
+  const currentMonth = today.getMonth();
+  const currentMonthName = format(today, "MMMM", { locale: id });
+  const startDate = startOfMonth(today);
   const endDate = new Date(
     today.getFullYear(),
     currentMonth,
@@ -69,7 +65,7 @@ const EvenBulanIni2 = () => {
         filterCurrentMonthEvents(data.event_terbit);
       })
       .catch((error) => console.error("Error fetching event:", error));
-  }, [currentMonth]);
+  }, []);
 
   const filterCurrentMonthEvents = (events) => {
     const filteredEvents = events.filter((event) => {
@@ -90,13 +86,14 @@ const EvenBulanIni2 = () => {
     });
 
   return (
-    <div className="flex flex-col">
-      <div className="pt-24 px-8">
-        <div className="flex flex-row ">
+    <div>
+      <div className="flex flex-col w-full pt-24 px-8">
+        <div className="flex justify-start items-center">
+          <Typography variant="fontH1">Kalendar Even</Typography>
           <Button
             variant="contained"
             component={Link}
-            to={"/kalendar even"}
+            to={"/kalendar-even-full"}
             sx={{
               ml: 2,
               bgcolor: "secondary.main",
@@ -106,24 +103,15 @@ const EvenBulanIni2 = () => {
             }}
           >
             <Typography variant="teksButton">
-              <ArrowBackIcon
-                style={{ verticalAlign: "middle", marginRight: "4px" }}
-              />
-              Selengkapnya
+              Lihat Kalendar
             </Typography>
           </Button>
         </div>
-        <div className="flex flex-col lg:flex-row w-full ">
+        <div className="flex flex-col lg:flex-row ">
           <div className="p-2">
             <div className="border mt-4">
               <h2 className="text-lg font-bold text-center py-2">
-                {format(
-                  new Date(today.getFullYear(), currentMonth, 1),
-                  "MMMM",
-                  {
-                    locale: id,
-                  }
-                )}
+                {format(today, "MMMM yyyy", { locale: id })}
               </h2>
               <div className="grid grid-cols-7 text-center text-sm">
                 {["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"].map(
@@ -196,4 +184,4 @@ const EvenBulanIni2 = () => {
   );
 };
 
-export default EvenBulanIni2;
+export default EventMainPage;
