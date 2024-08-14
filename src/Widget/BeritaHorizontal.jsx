@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Box, Button, Typography, Pagination, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 const BeritaHorizontal = () => {
   const [page, setPage] = useState(1);
@@ -50,6 +52,23 @@ const BeritaHorizontal = () => {
     return imgElement ? imgElement.src : null;
   };
 
+  const handleNewsClick = async (newsId) => {
+    try {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      const data = { id: newsId.toString() };
+      await axios.post(
+        `${process.env.VUE_APP_API_URL}/api/setData/${process.env.VUE_APP_OPD_ID}`,
+        { req: "klik_berita", data }
+      );
+      console.log(`Berita ${newsId} clicked`);
+    } catch (error) {
+      console.error("Error sending click data:", error);
+    }
+  };
+
   return (
     <div className="pt-4 ">
       <Box
@@ -89,7 +108,11 @@ const BeritaHorizontal = () => {
 
               return (
                 <Grid item xs={12} sm={6} md={4} key={news.id}>
-                  <Link to={`/berita/${news.id}`} onClick={handleChangeNews}>
+                  <Link
+                    to={`/berita/${news.id}`}
+                    key={news.id}
+                    onClick={() => handleNewsClick(news.id)}
+                  >
                     <div className="border rounded-lg shadow-lg mb-4 text-white">
                       {imageUrl && (
                         <img

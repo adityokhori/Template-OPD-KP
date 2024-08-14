@@ -17,6 +17,7 @@
     "@mui/material": "^5.15.21",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/styles": "^5.16.0",
+    "axios": "^1.7.4",
     "chart.js": "^4.4.3",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.2.13",

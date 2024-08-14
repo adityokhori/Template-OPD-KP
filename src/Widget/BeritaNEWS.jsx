@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const BeritaNEWS = () => {
   const [beritaTerbaru, setBeritaTerbaru] = useState(null);
@@ -48,6 +49,19 @@ const BeritaNEWS = () => {
     return imgElement ? imgElement.src : null;
   };
 
+  const handleNewsClick = async (newsId) => {
+    try {
+      const data = { id: newsId.toString() };
+      await axios.post(
+        `${process.env.VUE_APP_API_URL}/api/setData/${process.env.VUE_APP_OPD_ID}`,
+        { req: "klik_berita", data }
+      );
+      console.log(`Berita ${newsId} clicked`);
+    } catch (error) {
+      console.error("Error sending click data:", error);
+    }
+  };
+
   const mainNewsImage = getImageSrcFromIsiPost(beritaTerbaru.isi_post);
   const imageUrl =
     mainNewsImage ||
@@ -58,7 +72,11 @@ const BeritaNEWS = () => {
       <div className="flex flex-row justify-start items-start lg:items-center">
         <Typography variant="fontH1">Berita Terkini Diskominfo</Typography>
       </div>
-      <Link to={`/berita/${beritaTerbaru.id}`}>
+      <Link
+        to={`/berita/${beritaTerbaru.id}`}
+        key={beritaTerbaru.id}
+        onClick={() => handleNewsClick(beritaTerbaru.id)}
+      >
         <div className="border rounded-lg overflow-hidden shadow-lg">
           <img
             src={imageUrl}

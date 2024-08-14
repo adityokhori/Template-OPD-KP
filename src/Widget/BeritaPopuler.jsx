@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import axios from "axios";
 
 const BeritaPopuler = () => {
   const [berita, setBerita] = useState([]);
@@ -46,6 +47,19 @@ const BeritaPopuler = () => {
     return imgElement ? imgElement.src : null;
   };
 
+  const handleNewsClick = async (newsId) => {
+    try {
+      const data = { id: newsId.toString() };
+      await axios.post(
+        `${process.env.VUE_APP_API_URL}/api/setData/${process.env.VUE_APP_OPD_ID}`,
+        { req: "klik_berita", data }
+      );
+      console.log(`Berita ${newsId} clicked`);
+    } catch (error) {
+      console.error("Error sending click data:", error);
+    }
+  };
+
   return (
     <div className="w-full lg:w-full pb-4">
       <div className="flex flex-row justify-start items-start lg:items-center pb-4"></div>
@@ -55,7 +69,12 @@ const BeritaPopuler = () => {
           <TableBody>
             {berita.map((item, index) => (
               <TableRow key={item.id} className="hover:bg-gray-100">
-                <Link to={`/berita/${item.id}`} className="contents" >
+                <Link
+                  to={`/berita/${item.id}`}
+                  className="contents"
+                  key={item.id}
+                  onClick={() => handleNewsClick(item.id)}
+                >
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{item.judul_post}</TableCell>
                   <TableCell>
