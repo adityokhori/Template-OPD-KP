@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { getData } from "../API/api"
 
 const Berita = () => {
   const [berita, setBerita] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "berita" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("berita");
         setBerita(data.berita);
-        console.log(data.berita);
-      })
-      .catch((error) => console.error("Error fetching berita data:", error));
+      } catch (error) {
+        console.error("Error fetching berita data:", error);
+      }
+    }
+    fetchData();
   }, []);
 
   if (berita.length === 0) {

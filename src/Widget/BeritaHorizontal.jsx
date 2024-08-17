@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Button, Typography, Pagination, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { getData } from "../API/api"
 
 const BeritaHorizontal = () => {
   const [page, setPage] = useState(1);
@@ -10,21 +10,15 @@ const BeritaHorizontal = () => {
   const itemsPerPage = 3;
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "berita" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("berita");
         setNewsData(data.berita);
-      })
-      .catch((error) => console.error("Error fetching berita data:", error));
+      } catch (error) {
+        console.error("Error fetching berita data:", error);
+      }
+    }
+    fetchData();
   }, []);
 
   const totalPages = Math.ceil(newsData.length / itemsPerPage);

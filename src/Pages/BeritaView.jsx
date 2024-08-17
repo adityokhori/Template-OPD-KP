@@ -6,29 +6,27 @@ import BeritaHorizontal from "../Widget/BeritaHorizontal";
 import BeritaPopuler from "../Widget/BeritaPopuler";
 import EventIcon from "@mui/icons-material/Event";
 import PersonIcon from "@mui/icons-material/Person";
+import { getData } from "../API/api"
 
 const BeritaView = () => {
   const { id } = useParams(); // Get the news ID from the URL
   const [news, setNews] = useState(null);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "berita" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("berita");
         const selectedNews = data.berita.find((item) => item.id === id);
         setNews(selectedNews);
-      })
-      .catch((error) => console.error("Error fetching berita data:", error));
+      } catch (error) {
+        console.error("Error fetching berita data:", error);
+      }
+    }
+
+    fetchData();
   }, [id]);
+
+
 
   if (!news) {
     return <Typography>Loading...</Typography>;
