@@ -44,11 +44,11 @@ const Popup = ({ isOpen, onClose }) => {
           &times;
         </button>
         <div className="relative">
-          <Link to={`/pengumuman/${popupPage.id}`}>
+          <Link to={`/pengumuman/${popupPage.id}`} >
             <img
               src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${popupPage.gambar_khusus}`}
               alt="Pengumuman Khusus"
-              className="max-w-full h-auto"
+              className="max-w-full h-auto "
             />
             <h2 className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center py-4">
               {popupPage.desk_singkat}

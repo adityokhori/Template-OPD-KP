@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import { List, ListItem, ListItemText, MenuItem, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const ListMenuFooter = () => {
@@ -22,9 +22,10 @@ const ListMenuFooter = () => {
             submenuItems: parent.submenu.map(submenuItem => ({
               text: submenuItem.nama_menu,
               link: `/${submenuItem.route || submenuItem.nama_menu.toLowerCase()}`,
+              idpost: submenuItem.id_post
             })),
           }));
-
+          console.log(menuItems.item)
         setMenuItems(menuItems);
       })
       .catch((error) => console.error("Error fetching menu data:", error));
@@ -44,7 +45,7 @@ const ListMenuFooter = () => {
             <ListItem key={subIndex}>
               <ListItemText
                 primary={
-                  <Link to={item.link} className="hover:text-orange-500 ">
+                  <Link to={`/pages${item.link}/${item.idpost}`} className="hover:text-orange-500 ">
                     {item.text}
                   </Link>
                 }

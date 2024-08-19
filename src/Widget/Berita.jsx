@@ -32,7 +32,6 @@ const Berita = () => {
   const beritaTerbaru = berita[0];
   const beritaLainnya = berita.slice(1, 6);
 
-  // Image URL for the main news item
   const mainNewsImage = getImageSrcFromIsiPost(beritaTerbaru.isi_post) ||
     `${process.env.VUE_APP_API_URL}/image/posting/berita/${process.env.VUE_APP_OPD_ID}/original/${beritaTerbaru.post_gambar}`;
 

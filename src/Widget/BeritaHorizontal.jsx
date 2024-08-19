@@ -166,14 +166,14 @@ const BeritaHorizontal = () => {
               color="primary"
               sx={{
                 "& .MuiPaginationItem-root": {
-                  color: "white", // Warna nomor angka
+                  color: "white", 
                 },
                 "& .MuiPaginationItem-page.Mui-selected": {
-                  backgroundColor: "gray", // Warna lingkaran penanda nomor yang terpilih
-                  color: "white", // Warna nomor angka yang terpilih
+                  backgroundColor: "gray",
+                  color: "white", 
                 },
                 "& .MuiPaginationItem-ellipsis": {
-                  color: "white", // Warna elipsis
+                  color: "white",
                 },
               }}
             />
