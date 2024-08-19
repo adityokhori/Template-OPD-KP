@@ -4,7 +4,7 @@ import FooterPage from "./FooterPage";
 import BeritaNEWS from "../Widget/BeritaNEWS";
 import { useParams } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
-
+import { Link } from "react-router-dom";
 
 const PengumumanView = () => {
   const { id } = useParams();
@@ -33,20 +33,33 @@ const PengumumanView = () => {
   }, [id]);
 
   return (
-    <div className="mt-24 w-full ">
+    <div className="mt-14 w-full ">
       <div className="flex flex-row p-10">
-        <div className="p-2 w-2/3 ">
+        <div className="p-2 w-2/3">
           {pengumuman ? (
-            <Card key={pengumuman.id} sx={{ mb: 2 }}>
-              <Typography variant="fontH1">
+            <Card
+              key={pengumuman.id}
+              sx={{ mb: 2, p: 4 }}
+              className="space-y-4"
+            >
+              <Typography
+                variant="fontH1"
+                className="flex justify-center items-cente pb-4"
+              >
                 {pengumuman.judul_pengumuman}
               </Typography>
               {pengumuman.gambar && (
-                <img
-                  src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${pengumuman.gambar}`}
-                  alt={`Pengumuman ${pengumuman.id}`}
-                  className="w-1/2 h-auto object-cover mr-4"
-                />
+                <Link
+                  to={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${pengumuman.gambar}`}
+                >
+                  <div className="flex justify-center items-center">
+                    <img
+                      src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${pengumuman.gambar}`}
+                      alt={`Pengumuman ${pengumuman.id}`}
+                      className="w-1/2 h-auto object-cover"
+                    />
+                  </div>
+                </Link>
               )}
               <CardContent>
                 <Typography variant="body2" color="text.secondary">

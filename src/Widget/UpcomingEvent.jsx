@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Typography,
+  TableHead,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 const UpcomingEvent = ({ currentMonth }) => {
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -47,11 +55,19 @@ const UpcomingEvent = ({ currentMonth }) => {
       </Typography>
       <div className="shadow-md">
         <Table>
+          <TableHead className="bg-gray-200">
+            <TableRow>
+              <TableCell align="center">Nama Acara</TableCell>
+              <TableCell align="center">Tanggal Mulai</TableCell>
+              <TableCell align="center">Tanggal Selesai</TableCell>
+            </TableRow>
+          </TableHead>
+
           <TableBody>
             {filteredEvents
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((event) => (
-                <TableRow key={event.id}>
+                <TableRow key={event.id} component={Link} to={"/kalendar even"}>
                   <TableCell>{event.judul_kalender_event}</TableCell>
                   <TableCell>{event.tanggal_event_mulai}</TableCell>
                   <TableCell>{event.tanggal_event_akhir}</TableCell>

@@ -91,7 +91,7 @@ const EvenBulanIni2 = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="pt-24 px-8">
+      <div className="pt-24 px-8 pb-4">
         <div className="flex flex-row ">
           <Button
             variant="contained"
@@ -143,15 +143,15 @@ const EvenBulanIni2 = () => {
                       key={day}
                       className={`relative p-1 ${
                         isSameDay(day, today)
-                          ? "bg-blue-500 text-white rounded-full cursor-default"
-                          : "cursor-default hover:text-black rounded"
+                          ? "bg-blue-500 text-white rounded-full cursor-default w-8 h-8 ml-6"
+                          : "cursor-default hover:bg-gray-100 hover:text-black rounded"
                       }`}
                       onMouseEnter={() => handleMouseEnter(day, eventsForDay)}
                       onMouseLeave={handleMouseLeave}
                     >
                       {format(day, "d")}
                       {eventsForDay.length > 0 && (
-                        <div className="flex justify-center items-center mt-1 space-x-1">
+                        <div className=" flex justify-center items-center mt-1 space-x-1">
                           {eventsForDay.map((event) => (
                             <span
                               key={event.id}
@@ -162,6 +162,7 @@ const EvenBulanIni2 = () => {
                           ))}
                         </div>
                       )}
+                      
                       {tooltip &&
                         isSameDay(day, tooltip.date) &&
                         tooltip.description && (

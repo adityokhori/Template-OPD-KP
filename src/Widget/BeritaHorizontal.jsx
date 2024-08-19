@@ -75,7 +75,7 @@ const BeritaHorizontal = () => {
         {/* berita */}
         <div className="w-full">
           <div className="flex justify-start items-center align-middle">
-            <Typography variant="fontH1" className="text-white">
+            <Typography variant="fontH1" className="text-white pb-2">
               Berita lainnya
             </Typography>
             <Button

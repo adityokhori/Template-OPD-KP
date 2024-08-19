@@ -1,25 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Popup = ({ isOpen, onClose }) => {
   const [popupPage, setPopupPage] = useState(null);
 
   useEffect(() => {
     if (isOpen) {
-      fetch(`${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          req: "pengumuman",
-        }),
-      })
+      fetch(
+        `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            req: "pengumuman",
+          }),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           const filteredData = data.pengumuman
-            .filter(item => item.tayang_khusus === "Y" && item.gambar_khusus)
+            .filter((item) => item.tayang_khusus === "Y" && item.gambar_khusus)
             .sort((a, b) => new Date(b.tgl_terbit) - new Date(a.tgl_terbit));
-          
+
           if (filteredData.length > 0) {
             setPopupPage(filteredData[0]);
           }
@@ -40,14 +44,16 @@ const Popup = ({ isOpen, onClose }) => {
           &times;
         </button>
         <div className="relative">
-          <img 
-            src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${popupPage.gambar_khusus}`} 
-            alt="Pengumuman Khusus" 
-            className="max-w-full h-auto"
-          />
-          <h2 className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center py-4">
-            {popupPage.desk_singkat}
-          </h2>
+          <Link to={`/pengumuman/${popupPage.id}`}>
+            <img
+              src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${popupPage.gambar_khusus}`}
+              alt="Pengumuman Khusus"
+              className="max-w-full h-auto"
+            />
+            <h2 className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center py-4">
+              {popupPage.desk_singkat}
+            </h2>
+          </Link>
         </div>
       </div>
     </div>
