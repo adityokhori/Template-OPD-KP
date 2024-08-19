@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { List, ListItem, ListItemText, MenuItem, Typography } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
 const ListMenuFooter = () => {
@@ -16,20 +22,29 @@ const ListMenuFooter = () => {
       .then((response) => response.json())
       .then((data) => {
         const menuItems = data.menu.lsmenu
-          .filter(item => item.submenu && item.submenu.length > 0)
-          .map(parent => ({
+          .filter((item) => item.submenu && item.submenu.length > 0)
+          .map((parent) => ({
             parentName: parent.nama_menu,
-            submenuItems: parent.submenu.map(submenuItem => ({
+            submenuItems: parent.submenu.map((submenuItem) => ({
               text: submenuItem.nama_menu,
-              link: `/${submenuItem.route || submenuItem.nama_menu.toLowerCase()}`,
-              idpost: submenuItem.id_post
+              link: `/${
+                submenuItem.route || submenuItem.nama_menu.toLowerCase()
+              }`,
+              idpost: submenuItem.id_post,
             })),
           }));
-          console.log(menuItems.item)
+        console.log(menuItems.item);
         setMenuItems(menuItems);
       })
       .catch((error) => console.error("Error fetching menu data:", error));
   }, []);
+
+  const handleSubNavClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="flex justify-center items-start">
@@ -45,7 +60,11 @@ const ListMenuFooter = () => {
             <ListItem key={subIndex}>
               <ListItemText
                 primary={
-                  <Link to={`/pages${item.link}/${item.idpost}`} className="hover:text-orange-500 ">
+                  <Link
+                    to={`/pages${item.link}/${item.idpost}`}
+                    className="hover:text-orange-500 "
+                    onClick={() => handleSubNavClick(item.idpost)}
+                  >
                     {item.text}
                   </Link>
                 }

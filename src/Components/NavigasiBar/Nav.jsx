@@ -132,7 +132,7 @@ const Nav = () => {
                       : `/${link.name.toLowerCase()}`
                   }
                   className={`${
-                    activeLink === link.name ? "text-blue-600" : "text-black"
+                    activeLink === link.name ? "text-blue-600 underline underline-offset-4" : "text-black"
                   } hover:text-blue-600 duration-500 whitespace-nowrap`}
                   onClick={() => handleLinkClick(link.name)}
                 >
