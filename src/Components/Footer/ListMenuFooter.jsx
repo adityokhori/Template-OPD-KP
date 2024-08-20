@@ -51,7 +51,7 @@ const ListMenuFooter = () => {
       {menuItems.map((menu, index) => (
         <List key={index}>
           <Typography
-            variant="h6"
+            variant="fontH3"
             className="text-start underline underline-offset-8 decoration-2 decoration-orange-500 px-2 whitespace-nowrap"
           >
             {menu.parentName}
@@ -65,7 +65,7 @@ const ListMenuFooter = () => {
                     className="hover:text-orange-500 "
                     onClick={() => handleSubNavClick(item.idpost)}
                   >
-                    {item.text}
+                    <Typography variant="teks">{item.text}</Typography>
                   </Link>
                 }
               />

@@ -3,14 +3,16 @@ import { Box, Typography, Pagination } from "@mui/material";
 import FooterPage from "./FooterPage";
 import BeritaNEWS from "../Widget/BeritaNEWS";
 import { Link } from "react-router-dom";
+import WarningIcon from '@mui/icons-material/Warning';
+
 
 const itemsPerPage = 5;
 
 const PengumumanPage = () => {
   const [page, setPage] = useState(1);
   const [pengumumanPage, setPengumumanPage] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(

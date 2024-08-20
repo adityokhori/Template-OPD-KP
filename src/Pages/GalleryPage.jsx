@@ -84,7 +84,7 @@ const GalleryPage = () => {
                     <Typography variant="h6" className="font-bold mb-2">
                       {album.judul_album}
                     </Typography>
-                    <Typography variant="body2" className="text-gray-700 mb-2">
+                    <Typography variant="body2" className="text-gray-700 mb-2 line-clamp-4">
                       {album.ket_album.replace(/(<([^>]+)>)/gi, "")}
                     </Typography>
                     <Typography variant="caption" className="text-gray-500">

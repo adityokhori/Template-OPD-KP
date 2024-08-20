@@ -4,6 +4,7 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import LoginIcon from "@mui/icons-material/Login";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { IoChevronDown } from "react-icons/io5";
+import {Typography} from "@mui/material";
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
@@ -41,6 +42,7 @@ const Nav = () => {
   }, []);
 
   const [menuData, setMenuData] = useState([]);
+  const [nunkerData, setNunkerData] = useState([]);
 
   useEffect(() => {
     fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
@@ -57,12 +59,29 @@ const Nav = () => {
           link: `/${item.nama_menu.toLowerCase()}`,
           link2: `/${item.route}`,
           id2: item.id_post,
+          nunker: item.nunker,
           submenu: item.submenu || [],
         }));
         setMenuData(menuItems);
       })
       .catch((error) => console.error("Error fetching menu data:", error));
   }, []);
+
+  useEffect(() => {
+    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ kunker: process.env.VUE_APP_OPD_ID }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setNunkerData(data.unker);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
 
   return (
     <div
@@ -75,13 +94,15 @@ const Nav = () => {
       </div>
 
       <ul
-        className={` px-16 md:flex md:items-center flex flex-col lg:flex-row lg:justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
+        className={` py-2 px-8 md:flex md:items-center flex flex-col lg:flex-row lg:justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
           open ? "top-30 bg-white bg-opacity-80" : "top-[-800px]"
         }`}
       >
         <Link to="/">
-          <div className="font-bold cursor-pointer flex items-center">
-            <img src="/diskominfo_kota.png" className="w-100 h-20" alt="Logo" />
+          <div className="font-bold cursor-pointer flex flex-row items-center space-x-2">
+            {/* <img src="/diskominfo_kota.png" className="w-100 h-20" alt="Logo" /> */}
+            <img src="/TPI-Logo.png" className="w-10 h-auto" alt="Logo" />
+            <Typography variant="fontH3">{nunkerData.nunker}</Typography>
           </div>
         </Link>
 
