@@ -34,7 +34,7 @@ const PengumumanView = () => {
 
   return (
     <div className="mt-14 w-full ">
-      <div className="flex flex-row p-10">
+      <div className="flex flex-row p-4">
         <div className="p-2 w-2/3">
           {pengumuman ? (
             <Card
@@ -44,7 +44,7 @@ const PengumumanView = () => {
             >
               <Typography
                 variant="fontH1"
-                className="flex justify-center items-cente pb-4"
+                className="flex justify-start  pb-4"
               >
                 {pengumuman.judul_pengumuman}
               </Typography>

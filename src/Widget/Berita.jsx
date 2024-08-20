@@ -43,7 +43,7 @@ const Berita = () => {
             <Typography variant="fontH2">Berita Terkini Diskominfo</Typography>
           </div>
           <Link to={`/berita/${beritaTerbaru.id}`}>
-            <div className="border rounded-lg overflow-hidden shadow-lg">
+            <div className="hover:bg-gray-100 border rounded-lg overflow-hidden shadow-lg">
               <img
                 src={mainNewsImage}
                 alt={beritaTerbaru.judul_post}
@@ -85,7 +85,7 @@ const Berita = () => {
 
               return (
                 <Link key={item.id} to={`/berita/${item.id}`}>
-                  <div className="border rounded-lg overflow-hidden shadow-lg flex flex-row mb-4 justify-center items-center pl-4">
+                  <div className="hover:bg-gray-100 border rounded-lg overflow-hidden shadow-lg flex flex-row mb-4 justify-center items-center pl-4">
                     {imageUrl && (
                       <img
                         src={imageUrl}
