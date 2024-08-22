@@ -27,12 +27,12 @@ const Footer = () => {
   return (
     // <div className="flex flex-col lg:flex-row justify-center items-center bg-green-300">
     //   {/* div green */}
-      <div className="w-full flex flex-row text-white">
+      <div className="w-full flex lg:flex-row flex-col text-white">
 
-        <div className="flex flex-col justify-center items-center w-1/2 ">
+        <div className="flex flex-col justify-center items-center w-full lg:w-1/2">
           <div className="flex flex-col pt-2 ">
 
-            <div className="flex flex-row justify-start items-center space-x-2 pb-2">
+            <div className="flex flex-row justify-center lg:justify-start items-center space-x-2 pb-2">
               <img src="/TPI-Logo.png" className="w-16 lg:w-12 h-auto" />
               <img src="/diskominfo_kota.png" className="w-52 lg:w-52 h-auto" />
             </div>
@@ -70,6 +70,7 @@ const Footer = () => {
             <div className="flex-1 ">
               <ListMenuFooter />
             </div>
+
             <div className="flex-1">
               <MapKominfo />
             </div>

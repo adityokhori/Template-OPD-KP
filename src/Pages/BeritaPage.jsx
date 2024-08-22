@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import FooterPage from "./FooterPage";
 import BeritaPopuler from "../Widget/BeritaPopuler";
 import axios from "axios";
-import { getData } from "../API/api"
+import { getData } from "../API/api";
+import TextField from "@mui/material/TextField";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import SearchIcon from '@mui/icons-material/Search';
 
 const BeritaPage = () => {
   const [page, setPage] = useState(1);
   const [newsData, setNewsData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -24,7 +28,18 @@ const BeritaPage = () => {
     fetchData();
   }, []);
 
-  const totalPages = Math.ceil(newsData.length / itemsPerPage);
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    setPage(1); // Reset to the first page when a new search is made
+  };
+
+  const filteredNewsData = newsData.filter(
+    (news) =>
+      news.judul_post.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      news.isi.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredNewsData.length / itemsPerPage);
 
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -34,7 +49,7 @@ const BeritaPage = () => {
     });
   };
 
-  const newsToDisplay = newsData.slice(
+  const newsToDisplay = filteredNewsData.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
@@ -64,9 +79,25 @@ const BeritaPage = () => {
       <div className="w-full flex flex-col lg:flex-row p-8 lg:p-20 space-x-4">
         {/* berita */}
         <div className="w-full lg:w-3/5">
-          <div className="w-full h-1/2 p-4">
-            <Typography variant="fontH1">Berita</Typography>
-            <div className="space-y-4">
+          <div className="w-full  h-1/2 p-4">
+            <div className="flex justify-between">
+              <Typography variant="fontH1">Berita</Typography>
+              <TextField
+                id="filled-search"
+                label="Cari berita"
+                type="search"
+                variant="standard"
+                sx={{
+                  width: "300px",
+                  height: "10px",
+                  scale: ".9",
+                }}
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+
+            </div>
+            <div className="space-y-4 pt-4">
               {newsToDisplay.map((news) => {
                 const NewsImageUnique = getImageSrcFromIsiPost(news.isi_post);
                 const imageUrl =
