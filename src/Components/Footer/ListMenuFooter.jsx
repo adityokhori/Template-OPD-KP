@@ -52,17 +52,22 @@ const ListMenuFooter = () => {
         <List key={index}>
           <Typography
             variant="fontH3"
-            className="text-start underline underline-offset-8 decoration-2 decoration-orange-500 px-2 whitespace-nowrap"
+            className="text-start underline underline-offset-8 decoration-2 decoration-orange-500 whitespace-nowrap"
           >
             {menu.parentName}
           </Typography>
           {menu.submenuItems.map((item, subIndex) => (
-            <ListItem key={subIndex}>
+            <ListItem
+              key={subIndex}
+              sx={{
+                padding: "1px 0"
+              }}
+            >
               <ListItemText
                 primary={
                   <Link
                     to={`/pages${item.link}/${item.idpost}`}
-                    className="hover:text-orange-500 "
+                    className=" hover:text-orange-500"
                     onClick={() => handleSubNavClick(item.idpost)}
                   >
                     <Typography variant="teks">{item.text}</Typography>

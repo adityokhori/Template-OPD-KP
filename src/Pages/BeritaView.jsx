@@ -6,7 +6,8 @@ import BeritaHorizontal from "../Widget/BeritaHorizontal";
 import BeritaPopuler from "../Widget/BeritaPopuler";
 import EventIcon from "@mui/icons-material/Event";
 import PersonIcon from "@mui/icons-material/Person";
-import { getData } from "../API/api"
+import { getData } from "../API/api";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const BeritaView = () => {
   const { id } = useParams(); // Get the news ID from the URL
@@ -26,8 +27,6 @@ const BeritaView = () => {
     fetchData();
   }, [id]);
 
-
-
   if (!news) {
     return <Typography>Loading...</Typography>;
   }
@@ -40,10 +39,11 @@ const BeritaView = () => {
     <div className="pt-16">
       <div className="my-8 mx-16">
         <div className="flex flex-row space-x-8">
-          <div className="w-2/3">
+          <div className="w-2/3 border rounded-lg shadow-lg p-4">
             <Typography variant="h3" component="h1" gutterBottom>
               {news.judul_post}
             </Typography>
+
             <Typography
               variant="subtitle1"
               color="textSecondary"
@@ -57,7 +57,11 @@ const BeritaView = () => {
                 style={{ marginLeft: 8, marginRight: 4 }}
               />
               {news.penulis}
+              <VisibilityIcon fontSize="small" style={{  marginLeft: 8,marginRight: 4 }} />
+              {news.jum_klik}
+
             </Typography>
+
             {imageUrl && (
               <Box my={4} textAlign="center">
                 <img
@@ -67,13 +71,13 @@ const BeritaView = () => {
                 />
               </Box>
             )}
-            <Typography variant="body1" component="div" sx={{ mt: 4 }}>
+            <Typography variant="body1" component="div" sx={{ mt: 2 }}>
               <div
                 dangerouslySetInnerHTML={{ __html: news.isi_post }}
                 className="leading-relaxed"
               />
             </Typography>
-            <br/>
+            <br />
           </div>
           <div className="w-1/3">
             <BeritaPopuler />

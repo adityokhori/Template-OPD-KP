@@ -71,7 +71,7 @@ const Footer = () => {
               <ListMenuFooter />
             </div>
 
-            <div className="flex-1">
+            <div className="flex-1 pl-8">
               <MapKominfo />
             </div>
           </div>
