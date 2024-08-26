@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className=" flex flex-col lg:flex-row justify-between items-start pt-8 lg:pt-8 ">
+        <div className=" flex flex-col lg:flex-row justify-between items-start pt-8 lg:pt-8 lg:pl-4">
           <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0 w-full">
             <div className="flex-1 ">
               <ListMenuFooter />

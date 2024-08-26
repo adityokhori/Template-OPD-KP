@@ -4,7 +4,7 @@ import { IoMenu, IoClose } from "react-icons/io5";
 import LoginIcon from "@mui/icons-material/Login";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { IoChevronDown } from "react-icons/io5";
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
@@ -82,7 +82,6 @@ const Nav = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-
   return (
     <div
       className={`fixed text-sm z-20 shadow-md w-full top-0 left-0 font-bold transition-colors duration-300 ${
@@ -94,15 +93,17 @@ const Nav = () => {
       </div>
 
       <ul
-        className={` py-2 px-8 md:flex md:items-center flex flex-col lg:flex-row lg:justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
+        className={`py-2 px-8 md:flex md:items-center flex flex-col lg:flex-row lg:justify-between items-center md:static absolute w-full left-0 md:w-auto transition-all duration-500 ease-in ${
           open ? "top-30 bg-white bg-opacity-80" : "top-[-800px]"
         }`}
       >
+        {/* logo text */}
         <Link to="/">
           <div className="font-bold cursor-pointer flex flex-row items-center space-x-2">
-            {/* <img src="/diskominfo_kota.png" className="w-100 h-20" alt="Logo" /> */}
             <img src="/TPI-Logo.png" className="w-10 h-auto" alt="Logo" />
             <Typography variant="fontH3">{nunkerData.nunker}</Typography>
+            {/* Separator line */}
+            <div className="hidden lg:block border-l-2 border-gray-300 h-6 mx-4"></div>
           </div>
         </Link>
 
@@ -134,7 +135,7 @@ const Nav = () => {
                               ? `/pages/${subLink.route}/${subLink.id_post}`
                               : subLink.hyperlink || "#"
                           }
-                          className=" block px-4 py-2 hover:bg-gray-200"
+                          className="block px-4 py-2 hover:bg-gray-200"
                           onClick={() => {
                             handleLinkClick(subLink.nama_menu);
                           }}
@@ -153,7 +154,9 @@ const Nav = () => {
                       : `/${link.name.toLowerCase()}`
                   }
                   className={`${
-                    activeLink === link.name ? "text-blue-600 underline underline-offset-4" : "text-black"
+                    activeLink === link.name
+                      ? "text-blue-600 underline underline-offset-4"
+                      : "text-black"
                   } hover:text-blue-600 duration-500 whitespace-nowrap`}
                   onClick={() => handleLinkClick(link.name)}
                 >

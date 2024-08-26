@@ -47,7 +47,7 @@ const ListMenuFooter = () => {
   };
 
   return (
-    <div className="flex justify-center items-start">
+    <div className="flex justify-center items-start space-x-4">
       {menuItems.map((menu, index) => (
         <List key={index}>
           <Typography
@@ -60,7 +60,7 @@ const ListMenuFooter = () => {
             <ListItem
               key={subIndex}
               sx={{
-                padding: "1px 0"
+                padding: "1px 0",
               }}
             >
               <ListItemText
