@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Pagination } from "@mui/material";
+import { Box, Typography, Pagination, Divider } from "@mui/material";
 import FooterPage from "./FooterPage";
 import BeritaNEWS from "../Widget/BeritaNEWS";
 import { Link } from "react-router-dom";
@@ -104,6 +104,7 @@ const PengumumanPage = () => {
             )}
           </div>
         </div>
+        <Divider orientation="vertical" flexItem />
 
         <div className="w-2/5 pl-8">
           <div>

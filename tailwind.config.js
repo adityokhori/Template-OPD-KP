@@ -15,6 +15,8 @@ export default {
       },
       fontFamily: {
         arial: ['Arial', 'sans-serif'],
+        // test: ['Poppins', 'sans-serif'],
+        test: ['Poppins', 'sans-serif'],
       },
       fontSize: {
         'h1': '34px',

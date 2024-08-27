@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Pagination } from "@mui/material";
+import { Box, Typography, Pagination, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import FooterPage from "./FooterPage";
 import BeritaPopuler from "../Widget/BeritaPopuler";
@@ -79,7 +79,7 @@ const BeritaPage = () => {
       <div className="w-full flex flex-col lg:flex-row p-8 lg:pt-20 space-x-4">
         {/* berita */}
         <div className="w-full lg:w-3/5">
-          <div className="w-full  h-1/2 p-4">
+          <div className="w-full h-1/2 p-4">
             <div className="flex justify-between">
               <Typography variant="fontH1">Berita</Typography>
               <TextField
@@ -94,7 +94,6 @@ const BeritaPage = () => {
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
-
             </div>
             <div className="space-y-4 pt-4">
               {newsToDisplay.map((news) => {
@@ -142,6 +141,10 @@ const BeritaPage = () => {
             </Box>
           </div>
         </div>
+
+        {/* Divider */}
+        <Divider orientation="vertical" flexItem />
+
         <div className="w-full pt-8 lg:w-2/5 lg:pt-0">
           <BeritaPopuler />
         </div>
