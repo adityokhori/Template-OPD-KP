@@ -3,8 +3,8 @@ import { Box, Typography, Pagination, Divider } from "@mui/material";
 import FooterPage from "./FooterPage";
 import BeritaNEWS from "../Widget/BeritaNEWS";
 import { Link } from "react-router-dom";
-import WarningIcon from '@mui/icons-material/Warning';
-
+import WarningIcon from "@mui/icons-material/Warning";
+import InboxIcon from "@mui/icons-material/Inbox";
 
 const itemsPerPage = 5;
 
@@ -68,14 +68,17 @@ const PengumumanPage = () => {
                 {error}
               </Typography>
             ) : pengumumanPage.length === 0 ? (
-              <Typography variant="body1">Tidak ada pengumuman yang tersedia.</Typography>
+              <div className="flex items-center justify-center flex-col">
+                <InboxIcon style={{ fontSize: 40, marginBottom: 10 }} />
+                <Typography variant="body1">
+                  Tidak ada pengumuman yang tersedia.
+                </Typography>
+              </div>
             ) : (
               <div className="flex flex-col gap-4">
                 {newsToDisplay.map((item) => (
                   <Link to={`/pengumuman/${item.id}`} key={item.id}>
-                    <div
-                      className="flex items-center border rounded-lg overflow-hidden shadow-lg p-4"
-                    >
+                    <div className="flex items-center border rounded-lg overflow-hidden shadow-lg p-4">
                       <img
                         src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${item.gambar}`}
                         alt={`News ${item.id}`}

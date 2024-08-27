@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Typography, Button, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import { getData } from "../API/api"
+import EventIcon from '@mui/icons-material/Event';
 
 const Berita = () => {
   const [berita, setBerita] = useState([]);
@@ -95,14 +96,20 @@ const Berita = () => {
                         onError={(e) => (e.target.style.display = "none")}
                       />
                     )}
-                    <div className="p-4">
-                      <h3 className="text-lg font-bold mb-2 line-clamp-2">
-                        {item.judul_post}
-                      </h3>
-                      <p className="text-gray-700 text-base line-clamp-3">
-                        {item.isi}
-                      </p>
-                    </div>
+<div className="p-4">
+  <h3 className="text-lg font-bold mb-2 line-clamp-2">
+    {item.judul_post}
+  </h3>
+  <div className="flex items-center text-sm mb-2">
+    <EventIcon className="mr-1" />
+    <p className="line-clamp-1 underline">
+      {item.tanggal_terbit}
+    </p>
+  </div>
+  <p className="text-gray-700 text-base line-clamp-3">
+    {item.isi}
+  </p>
+</div>
                   </div>
                 </Link>
               );

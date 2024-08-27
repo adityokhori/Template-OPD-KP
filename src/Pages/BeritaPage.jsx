@@ -7,7 +7,8 @@ import axios from "axios";
 import { getData } from "../API/api";
 import TextField from "@mui/material/TextField";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
+import EventIcon from "@mui/icons-material/Event";
 
 const BeritaPage = () => {
   const [page, setPage] = useState(1);
@@ -121,6 +122,12 @@ const BeritaPage = () => {
                         <h3 className="text-lg font-bold mb-2 overflow-hidden">
                           {news.judul_post}
                         </h3>
+                        <div className="flex items-center text-sm mb-2">
+                          <EventIcon className="mr-1" />
+                          <p className="line-clamp-1 underline">
+                            {news.tanggal_terbit}
+                          </p>
+                        </div>
                         <p className="text-gray-700 text-base line-clamp-3 overflow-hidden">
                           {news.isi}
                         </p>
