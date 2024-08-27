@@ -68,8 +68,8 @@ const PengumumanPage = () => {
                 {error}
               </Typography>
             ) : pengumumanPage.length === 0 ? (
-              <div className="flex items-center justify-center flex-col">
-                <InboxIcon style={{ fontSize: 40, marginBottom: 10 }} />
+              <div className="flex items-center justify-center flex-col mt-20">
+                <InboxIcon style={{ fontSize: 40, marginBottom: 10 }}/>
                 <Typography variant="body1">
                   Tidak ada pengumuman yang tersedia.
                 </Typography>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Button, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
-import { getData } from "../API/api"
-import EventIcon from '@mui/icons-material/Event';
+import { getData } from "../API/api";
+import EventIcon from "@mui/icons-material/Event";
 
 const Berita = () => {
   const [berita, setBerita] = useState([]);
@@ -33,7 +33,8 @@ const Berita = () => {
   const beritaTerbaru = berita[0];
   const beritaLainnya = berita.slice(1, 6);
 
-  const mainNewsImage = getImageSrcFromIsiPost(beritaTerbaru.isi_post) ||
+  const mainNewsImage =
+    getImageSrcFromIsiPost(beritaTerbaru.isi_post) ||
     `${process.env.VUE_APP_API_URL}/image/posting/berita/${process.env.VUE_APP_OPD_ID}/original/${beritaTerbaru.post_gambar}`;
 
   return (
@@ -55,6 +56,12 @@ const Berita = () => {
                 <h2 className="text-xl font-bold mb-2">
                   {beritaTerbaru.judul_post}
                 </h2>
+                <div className="flex items-center text-sm mb-2">
+                  <EventIcon className="mr-1" />
+                  <p className="line-clamp-1 underline">
+                    {beritaTerbaru.tanggal_terbit}
+                  </p>
+                </div>
                 <p className="text-gray-700 text-base">{beritaTerbaru.isi}</p>
               </div>
             </div>
@@ -82,7 +89,8 @@ const Berita = () => {
               </Button>
             </div>
             {beritaLainnya.map((item) => {
-              const imageUrl = getImageSrcFromIsiPost(item.isi_post) ||
+              const imageUrl =
+                getImageSrcFromIsiPost(item.isi_post) ||
                 `${process.env.VUE_APP_API_URL}/image/posting/berita/${process.env.VUE_APP_OPD_ID}/original/${item.post_gambar}`;
 
               return (
@@ -96,20 +104,20 @@ const Berita = () => {
                         onError={(e) => (e.target.style.display = "none")}
                       />
                     )}
-<div className="p-4">
-  <h3 className="text-lg font-bold mb-2 line-clamp-2">
-    {item.judul_post}
-  </h3>
-  <div className="flex items-center text-sm mb-2">
-    <EventIcon className="mr-1" />
-    <p className="line-clamp-1 underline">
-      {item.tanggal_terbit}
-    </p>
-  </div>
-  <p className="text-gray-700 text-base line-clamp-3">
-    {item.isi}
-  </p>
-</div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-bold mb-2 line-clamp-2">
+                        {item.judul_post}
+                      </h3>
+                      <div className="flex items-center text-sm mb-2">
+                        <EventIcon className="mr-1" />
+                        <p className="line-clamp-1 underline">
+                          {item.tanggal_terbit}
+                        </p>
+                      </div>
+                      <p className="text-gray-700 text-base line-clamp-3">
+                        {item.isi}
+                      </p>
+                    </div>
                   </div>
                 </Link>
               );
