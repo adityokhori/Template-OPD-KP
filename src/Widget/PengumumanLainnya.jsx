@@ -5,19 +5,18 @@ import { Link } from "react-router-dom";
 import { getData } from "../API/api";
 
 const PengumumanLainnya = ({ id }) => {
-  const [otherPengumuman, setOtherPengumuman] = useState([]);
+  const [pengumumanLain, setPengumumanLain] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getData("pengumuman");
         const filteredPengumuman = data.pengumuman.filter((item) => item.id !== id);
-        setOtherPengumuman(filteredPengumuman);
+        setPengumumanLain(filteredPengumuman);
       } catch (error) {
         console.error("Error fetching other pengumuman data:", error);
       }
     }
-
     fetchData();
   }, [id]);
 
@@ -35,7 +34,7 @@ const PengumumanLainnya = ({ id }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {otherPengumuman.map((item) => (
+            {pengumumanLain.map((item) => (
               <TableRow key={item.id}>
                 <TableCell>
                   <Link to={`/pengumuman/${item.id}`} className="text-blue-500 hover:underline">
