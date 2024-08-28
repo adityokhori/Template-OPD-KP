@@ -5,6 +5,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { IoChevronDown } from "react-icons/io5";
 import { Typography } from "@mui/material";
+import { getOPDInfo } from "../../API/api";
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
@@ -45,14 +46,7 @@ const Nav = () => {
   const [nunkerData, setNunkerData] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ kunker: process.env.VUE_APP_OPD_ID }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         const menuItems = data.menu.lsmenu.map((item) => ({
           name: item.nama_menu,
@@ -68,14 +62,7 @@ const Nav = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ kunker: process.env.VUE_APP_OPD_ID }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         setNunkerData(data.unker);
       })

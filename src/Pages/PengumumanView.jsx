@@ -5,32 +5,30 @@ import BeritaNEWS from "../Widget/BeritaNEWS";
 import { useParams } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
+import { getData } from "../API/api";
+import BeritaNEWS2 from "../Widget/PengumumanTerkini";
+import PengumumanLainnya from "../Widget/PengumumanLainnya";
 
 const PengumumanView = () => {
   const { id } = useParams();
   const [pengumuman, setPengumuman] = useState(null);
 
+
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          req: "pengumuman",
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("pengumuman");
         const foundPengumuman = data.pengumuman.find((item) => item.id === id);
         setPengumuman(foundPengumuman);
-        console.log(foundPengumuman);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
+      } catch (error) {
+        console.error("Error fetching Artikel data:", error);
+      }
+    }
+
+    fetchData();
   }, [id]);
+
+
 
   return (
     <div className="mt-14 w-full ">
@@ -95,7 +93,8 @@ const PengumumanView = () => {
 
         <div className="w-1/3 pl-8">
           <div>
-            <BeritaNEWS />
+            <BeritaNEWS2 />
+            <PengumumanLainnya id={id}/>
           </div>
         </div>
       </div>

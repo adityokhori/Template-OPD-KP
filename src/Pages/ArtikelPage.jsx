@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import BeritaNEWS from "../Widget/BeritaNEWS";
 import EventIcon from "@mui/icons-material/Event";
 import PersonIcon from "@mui/icons-material/Person";
+import { getData } from "../API/api";
 
 const ArtikelPage = () => {
   const [page, setPage] = useState(1);
@@ -12,24 +13,18 @@ const ArtikelPage = () => {
   const itemsPerPage = 5;
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "artikel" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("artikel");
         setArtikelData(data.artikel);
-        console.log(data.artikel);
-      })
-      .catch((error) => console.error("Error fetching berita data:", error));
-  }, []);
+      } catch (error) {
+        console.error("Error fetching berita data:", error);
+      }
+    }
 
+    fetchData();
+  }, []);
+  
   const totalPages = Math.ceil(artikelData.length / itemsPerPage);
 
   const handleChangePage = (event, value) => {

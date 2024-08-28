@@ -3,32 +3,27 @@ import { Typography } from "@mui/material";
 import Pranala2 from "../Components/Pranala/Pranala2";
 import FooterPage from "./FooterPage";
 import { Link } from "react-router-dom";
+import { getData } from "../API/api";
 
 const InfografisAlbum = () => {
-    const [infografisData, setInfografisData] = useState([]);
+  const [infografisData, setInfografisData] = useState([]);
 
-    useEffect(() => {
-      fetch(
-        `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ req: "infografis_album" }),
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
+  useEffect(() => {
+    const fetchInfografisData = async () => {
+      try {
+        const data = await getData("infografis_album", null, null);
+        if (data.infografis_album) {
           setInfografisData(
             data.infografis_album.filter((item) => item.guid_gambar !== null)
           );
-          console.log(
-            `${process.env.VUE_APP_API_URL}/api/getDownloadInfografis/${process.env.VUE_APP_OPD_ID}/${data.infografis_album[0].guid_gambar}`
-          );
-        })
-        .catch((error) => console.error("Error fetching infografis data:", error));
-    }, []);
+        }
+      } catch (error) {
+        console.error("Error fetching infografis data:", error);
+      }
+    };
+
+    fetchInfografisData();
+  }, []);
 
   return (
     <div className="pt-24">
@@ -48,7 +43,9 @@ const InfografisAlbum = () => {
                 <div className="p-4">
                   <h2 className="text-xl font-bold mb-2">{item.judul}</h2>
                   <p className="text-gray-500 text-sm">{item.tanggal_terbit}</p>
-                  <p className="text-gray-500 text-sm">Jumlah: {item.jum_gambar} gambar</p>
+                  <p className="text-gray-500 text-sm">
+                    Jumlah: {item.jum_gambar} gambar
+                  </p>
                 </div>
               </div>
             </Link>

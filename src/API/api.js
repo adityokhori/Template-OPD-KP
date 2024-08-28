@@ -6,13 +6,26 @@ const OPD_ID = process.env.VUE_APP_OPD_ID;
 export async function getData(req, svar, sval) {
   const data = { req, svar, sval };
   try {
-    const response = await axios.post(
-      `${API_URL}/api/getData/${OPD_ID}`,
-      data
-    );
+    const response = await axios.post(`${API_URL}/api/getData/${OPD_ID}`, data);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
+    throw error;
+  }
+}
+
+export async function getOPDInfo() {
+  try {
+    const response = await axios.post(`${API_URL}/api/getOPDInfo`, {
+      kunker: OPD_ID,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
     throw error;
   }
 }

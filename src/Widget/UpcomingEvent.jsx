@@ -8,6 +8,7 @@ import {
   TableHead,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { getOPDInfo } from "../API/api";
 
 const UpcomingEvent = ({ currentMonth }) => {
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -15,16 +16,7 @@ const UpcomingEvent = ({ currentMonth }) => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        kunker: process.env.VUE_APP_OPD_ID,
-      }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         filterEvents(data.event_terbit);
       })

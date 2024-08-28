@@ -9,6 +9,7 @@ import {
 } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { id } from "date-fns/locale";
+import { getOPDInfo } from "../API/api";
 
 const EvenTahunIni = ({ year }) => {
   const [yearEvents, setYearEvents] = useState([]);
@@ -46,16 +47,7 @@ const EvenTahunIni = ({ year }) => {
   };
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        kunker: process.env.VUE_APP_OPD_ID,
-      }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         filterYearEvents(data.event_terbit);
       })

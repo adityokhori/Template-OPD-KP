@@ -5,6 +5,7 @@ import BeritaNEWS from "../Widget/BeritaNEWS";
 import { Link } from "react-router-dom";
 import WarningIcon from "@mui/icons-material/Warning";
 import InboxIcon from "@mui/icons-material/Inbox";
+import { getData } from "../API/api";
 
 const itemsPerPage = 5;
 
@@ -15,33 +16,23 @@ const PengumumanPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          req: "pengumuman",
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("pengumuman");
         if (data.pengumuman) {
           setPengumumanPage(data.pengumuman);
         } else {
           setPengumumanPage([]);
         }
-        setLoading(false);
-        console.log(data.pengumuman);
-      })
-      .catch((error) => {
+      } catch (error) {
         setError("Error fetching data.");
-        setLoading(false);
         console.error("Error fetching data:", error);
-      });
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
   }, []);
 
   const handleChangePage = (event, value) => {

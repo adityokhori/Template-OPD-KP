@@ -4,37 +4,27 @@ import FooterPage from "./FooterPage";
 import EventIcon from "@mui/icons-material/Event";
 import PersonIcon from "@mui/icons-material/Person";
 import { Box, Typography, Container } from "@mui/material";
+import { getData } from "../API/api";
 
 const PagesView = () => {
   const [pageData, setPageData] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          req: "halaman",
-          svar: "id",
-          sval: id,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("API Response:", data);
-
+    const fetchPageData = async () => {
+      try {
+        const data = await getData("halaman", "id", id);  
         if (data && data.halaman) {
           setPageData(data.halaman);
         } else {
           console.error("Invalid data format:", data);
         }
-      })
-      .catch((error) => console.error("Error fetching page data:", error));
+      } catch (error) {
+        console.error("Error fetching page data:", error);
+      }
+    };
+  
+    fetchPageData();
   }, [id]);
 
   if (!pageData) {

@@ -45,16 +45,7 @@ const EvenTahunIni = ({ year }) => {
   };
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        kunker: process.env.VUE_APP_OPD_ID,
-      }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         filterYearEvents(data.event_terbit);
       })

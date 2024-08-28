@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import FooterPage from "./FooterPage";
+import { getData } from "../API/api";
 
 const GalleryPage = () => {
   const [GAlbumData, setGAlbumData] = useState([]);
@@ -21,25 +22,18 @@ const GalleryPage = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "gallery_album" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("gallery_album");
         setGAlbumData(data.gallery_album);
-      })
-      .catch((error) =>
-        console.error("Error fetching gallery album data:", error)
-      );
-  }, []);
+      } catch (error) {
+        console.error("Error fetching gallery album data:", error);
+      }
+    }
 
+    fetchData();
+  }, []);
+  
   const toggleViewMode = () => {
     setViewMode(viewMode === "gallery" ? "list" : "gallery");
   };
@@ -84,7 +78,10 @@ const GalleryPage = () => {
                     <Typography variant="h6" className="font-bold mb-2">
                       {album.judul_album}
                     </Typography>
-                    <Typography variant="body2" className="text-gray-700 mb-2 line-clamp-4">
+                    <Typography
+                      variant="body2"
+                      className="text-gray-700 mb-2 line-clamp-4"
+                    >
                       {album.ket_album.replace(/(<([^>]+)>)/gi, "")}
                     </Typography>
                     <Typography variant="caption" className="text-gray-500">
@@ -110,9 +107,7 @@ const GalleryPage = () => {
                     <h2 className="font-bold text-white">Keterangan</h2>
                   </TableCell>
                   <TableCell>
-                    <h2 className="font-bold text-white">
-                      Tanggal Terbit
-                    </h2>
+                    <h2 className="font-bold text-white">Tanggal Terbit</h2>
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -131,7 +126,11 @@ const GalleryPage = () => {
                   >
                     <TableCell>{page * rowsPerPage + index + 1}</TableCell>
                     <TableCell>
-                      <Typography variant="body1" color="primary" className="line-clamp-3">
+                      <Typography
+                        variant="body1"
+                        color="primary"
+                        className="line-clamp-3"
+                      >
                         {album.judul_album}
                       </Typography>
                     </TableCell>

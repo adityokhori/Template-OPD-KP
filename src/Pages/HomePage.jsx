@@ -34,11 +34,11 @@ const HomePage = () => {
         <Berita />
         <Infografis />
       </div>
-      <div className="p-8 mx-8 flex flex-row justify-center items-center">
-        <div className="w-1/2">
+      <div className="p-8 mx-8 flex flex-col justify-center items-center space-y-20">
+        <div className="w-2/3 pt-4">
           <StatistikData />
         </div>
-        <div className="w-1/2">
+        <div className="w-full">
           <PetaLokasi />
         </div>
       </div>

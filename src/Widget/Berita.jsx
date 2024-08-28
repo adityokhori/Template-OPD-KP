@@ -40,7 +40,7 @@ const Berita = () => {
   return (
     <div className="w-full scale-95">
       <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start">
-        <div className="w-full lg:w-1/2 p-4 ">
+        <div className="w-full lg:w-3/5 p-4 ">
           <div className="flex justify-start items-center lg:items-center pb-4">
             <Typography variant="fontH2">Berita Terkini</Typography>
           </div>
@@ -69,7 +69,7 @@ const Berita = () => {
         </div>
         <Divider orientation="vertical" flexItem />
 
-        <div className="w-full lg:w-1/2 ml-0 lg:ml-4 p-4 lg:pt-4 ">
+        <div className="w-full lg:w-2/5 ml-0 lg:ml-4 p-4 lg:pt-4 ">
           <div className="pt-8 lg:pt-0">
             <div className="pb-4">
               <Typography variant="fontH2">Berita Lainnya</Typography>

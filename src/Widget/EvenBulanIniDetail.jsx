@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
-
+import { getOPDInfo } from "../API/api";
 const EvenBulanIniDetail = ({ currentMonth }) => {
   const [currentMonthEvents, setCurrentMonthEvents] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        kunker: process.env.VUE_APP_OPD_ID,
-      }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         if (data && data.event_terbit) {
           filterCurrentMonthEvents(data.event_terbit);

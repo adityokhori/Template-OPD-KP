@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import FooterPage from "./FooterPage";
 import { Link } from "react-router-dom";
+import { getData } from "../API/api";
 
 const DownloadAreaView = () => {
   const [downloadData, setDownloadData] = useState([]);
@@ -19,24 +20,16 @@ const DownloadAreaView = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "download" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const data = await getData("download");
         setDownloadData(data.download);
-        console.log(data.download);
-      })
-      .catch((error) =>
-        console.error("Error fetching download area data:", error)
-      );
+      } catch (error) {
+        console.error("Error fetching download area data:", error);
+      }
+    }
+
+    fetchData();
   }, []);
 
   const handleChangePage = (event, newPage) => {

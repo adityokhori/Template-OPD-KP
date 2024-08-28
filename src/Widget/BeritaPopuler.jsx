@@ -11,29 +11,25 @@ import {
 import { Link } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
+import { getData } from "../API/api";
 
 const BeritaPopuler = () => {
   const [berita, setBerita] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "berita" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchBerita() {
+      try {
+        const data = await getData("berita", null, null);
         const sortedBerita = data.berita
           .sort((a, b) => b.jum_klik - a.jum_klik)
           .slice(0, 5);
         setBerita(sortedBerita);
-      })
-      .catch((error) => console.error("Error fetching berita data:", error));
+      } catch (error) {
+        console.error("Error fetching berita data:", error);
+      }
+    }
+
+    fetchBerita();
   }, []);
 
   if (berita.length === 0) {

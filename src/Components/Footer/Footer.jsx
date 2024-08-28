@@ -4,22 +4,15 @@ import ListMenuFooter from "./ListMenuFooter";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import MapKominfo from "../MapKominfo";
+import { getOPDInfo } from "../../API/api";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ kunker: process.env.VUE_APP_OPD_ID }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         setFooterData(data.unker);
-        console.log(data.unker);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);

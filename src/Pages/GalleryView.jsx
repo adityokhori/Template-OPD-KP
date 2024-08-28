@@ -3,61 +3,42 @@ import { useParams, Link } from "react-router-dom";
 import { Typography, Button } from "@mui/material";
 import FooterPage from "./FooterPage";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { getData } from "../API/api";
 
 const GalleryView = () => {
   const { id } = useParams();
   const [galleryData, setGalleryData] = useState([]);
   const [gallery2Data, setGallery2Data] = useState([]);
-
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          req: "gallery",
-          limit: null,
-          offset: null,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchGalleryData() {
+      try {
+        const data = await getData("gallery", null, null);
         const albumGallery = data.gallery.filter(
           (item) => item.id_gallery_album === id
         );
         setGalleryData(albumGallery);
-      })
-      .catch((error) => console.error("Error fetching gallery data:", error));
-  }, [id]);
-
-  useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          req: "gallery_album",
-          limit: null,
-          offset: null,
-        }),
+      } catch (error) {
+        console.error("Error fetching gallery data:", error);
       }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    }
+  
+    fetchGalleryData();
+  }, [id]);
+  
+  useEffect(() => {
+    async function fetchGalleryAlbumData() {
+      try {
+        const data = await getData("gallery_album", null, null);
         const albumGallery2 = data.gallery_album.filter(
           (item) => item.id === id
         );
-        console.log(albumGallery2);
         setGallery2Data(albumGallery2);
-      })
-      .catch((error) => console.error("Error fetching gallery data:", error));
+      } catch (error) {
+        console.error("Error fetching gallery album data:", error);
+      }
+    }
+  
+    fetchGalleryAlbumData();
   }, [id]);
 
   return (

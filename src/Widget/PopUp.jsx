@@ -1,29 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getData } from "../API/api";
 
 const Popup = ({ isOpen, onClose }) => {
   const [popupPage, setPopupPage] = useState(null);
-
+  
   useEffect(() => {
     if (isOpen) {
-      fetch(
-        `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            req: "pengumuman",
-          }),
-        }
-      )
-        .then((response) => response.json())
+      getData("pengumuman", null, null)
         .then((data) => {
           const filteredData = data.pengumuman
             .filter((item) => item.tayang_khusus === "Y" && item.gambar_khusus)
             .sort((a, b) => new Date(b.tgl_terbit) - new Date(a.tgl_terbit));
-
+          
           if (filteredData.length > 0) {
             setPopupPage(filteredData[0]);
           }

@@ -3,26 +3,19 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Link } from "react-router-dom";
+import { getOPDInfo } from "../API/api";
 
 const MapKominfo = () => {
   const [sosmedData, setSosmedData] = useState({});
   const [coordinates, setCoordinates] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ kunker: process.env.VUE_APP_OPD_ID }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         try {
           const parsedData = JSON.parse(data.unker.medsos);
           setSosmedData(parsedData);
           setCoordinates(data.unker.latlng); // Extract the latlng data
-          console.log(parsedData);
 
         } catch (error) {
           console.error("Error parsing medsos data:", error);

@@ -29,22 +29,22 @@ const Statistik = () => {
   const [mapData, setMapData] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "Grafik" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    async function fetchData() {
+      try {
+        const response = await axios.post(
+          `${API_URL}/api/getData/${OPD_ID}`,
+          { req: "Grafik" },
+          { headers: { "Content-Type": "application/json" } }
+        );
+        const data = response.data;
         setDataStatistik(data.Grafik.filter(item => item.jenis_file === "Grafik"));
         setMapData(data.Grafik.find(item => item.jenis_file === "PETA")?.excel?.data || []);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
   }, []);
 
   const hasLineChartData = dataStatistik.length > 0 && dataStatistik[0]?.excel?.data.length > 0;

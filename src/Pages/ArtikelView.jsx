@@ -2,30 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Typography, Container } from "@mui/material";
 import FooterPage from "./FooterPage";
+import { getData } from "../API/api";
 
 const ArtikelView = () => {
   const { id } = useParams();
   const [artikel, setArtikel] = useState(null);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "artikel" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const selectedArtikel = data.artikel.find(
-          (item) => item.id === id
-        );
+    async function fetchData() {
+      try {
+        const data = await getData("artikel");
+        const selectedArtikel = data.artikel.find((item) => item.id === id);
         setArtikel(selectedArtikel);
-      })
-      .catch((error) => console.error("Error fetching Artikel data:", error));
+      } catch (error) {
+        console.error("Error fetching Artikel data:", error);
+      }
+    }
+
+    fetchData();
   }, [id]);
 
   if (!artikel) {

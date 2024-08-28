@@ -7,19 +7,13 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { getOPDInfo } from "../../API/api";
 
 const ListMenuFooter = () => {
   const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ kunker: process.env.VUE_APP_OPD_ID }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         const menuItems = data.menu.lsmenu
           .filter((item) => item.submenu && item.submenu.length > 0)
@@ -33,7 +27,6 @@ const ListMenuFooter = () => {
               idpost: submenuItem.id_post,
             })),
           }));
-        console.log(menuItems.item);
         setMenuItems(menuItems);
       })
       .catch((error) => console.error("Error fetching menu data:", error));

@@ -16,6 +16,7 @@ import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import FooterPage from "../Pages/FooterPage";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { getOPDInfo } from "../API/api";
 
 const EvenBulanIni2 = () => {
   const { month } = useParams();
@@ -55,16 +56,7 @@ const EvenBulanIni2 = () => {
   const handleMouseLeave = () => setTooltip(null);
 
   useEffect(() => {
-    fetch(`${process.env.VUE_APP_API_URL}/api/getOPDInfo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        kunker: process.env.VUE_APP_OPD_ID,
-      }),
-    })
-      .then((response) => response.json())
+    getOPDInfo()
       .then((data) => {
         filterCurrentMonthEvents(data.event_terbit);
       })
@@ -163,7 +155,7 @@ const EvenBulanIni2 = () => {
                           ))}
                         </div>
                       )}
-                      
+
                       {tooltip &&
                         isSameDay(day, tooltip.date) &&
                         tooltip.description && (

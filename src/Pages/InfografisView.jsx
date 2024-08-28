@@ -2,32 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import FooterPage from "./FooterPage";
+import { getData } from "../API/api";
 
 const InfografisAlbumDetail = () => {
   const [images, setImages] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          req: "infografis_album",
-          svar: "id_infografis_album",
-          sval: id,
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchAlbumImages = async () => {
+      try {
+        const data = await getData("infografis_album", "id_infografis_album", id);
         setImages(data.infografis_album);
         console.log(data.infografis_album);
-      })
-      .catch((error) => console.error("Error fetching album images:", error));
+      } catch (error) {
+        console.error("Error fetching album images:", error);
+      }
+    };
+  
+    fetchAlbumImages();
   }, [id]);
 
   return (

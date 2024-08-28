@@ -3,16 +3,17 @@ import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { getData } from "../API/api";
-const BeritaNEWS = () => {
+
+const BeritaNEWS2 = () => {
   const [beritaTerbaru, setBeritaTerbaru] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBeritaData = async () => {
       try {
-        const data = await getData("berita", null, null);
-        if (data.berita && data.berita.length > 0) {
-          const sortedBerita = data.berita.sort(
+        const data = await getData("pengumuman", null, null);
+        if (data.pengumuman && data.pengumuman.length > 0) {
+          const sortedBerita = data.pengumuman.sort(
             (a, b) => new Date(b.tgl_terbit) - new Date(a.tgl_terbit)
           );
           setBeritaTerbaru(sortedBerita[0]);
@@ -63,25 +64,25 @@ const BeritaNEWS = () => {
   return (
     <div className="w-full lg:w-full">
       <div className="flex flex-row justify-start items-start lg:items-center">
-        <Typography variant="fontH1">Berita Terkini</Typography>
+        <Typography variant="fontH1">Pengumuman Terkini</Typography>
       </div>
       <Link
-        to={`/berita/${beritaTerbaru.id}`}
+        to={`/pengumuman/${beritaTerbaru.id}`}
         key={beritaTerbaru.id}
         onClick={() => handleNewsClick(beritaTerbaru.id)}
       >
         <div className="border rounded-lg overflow-hidden shadow-lg">
           <img
-            src={imageUrl}
-            alt={beritaTerbaru.judul_post}
+            src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${beritaTerbaru.gambar}`}
+            alt={beritaTerbaru.judul_pengumuman}
             className="w-full h-auto object-cover"
             onError={(e) => (e.target.src = null)}
           />
           <div className="p-4">
             <h2 className="text-xl font-bold mb-2">
-              {beritaTerbaru.judul_post}
+              {beritaTerbaru.judul_pengumuman}
             </h2>
-            <p className="text-gray-700 text-base">{beritaTerbaru.isi}</p>
+            <p className="text-gray-700 text-base">{beritaTerbaru.desk_singkat}</p>
           </div>
         </div>
       </Link>
@@ -89,4 +90,4 @@ const BeritaNEWS = () => {
   );
 };
 
-export default BeritaNEWS;
+export default BeritaNEWS2;

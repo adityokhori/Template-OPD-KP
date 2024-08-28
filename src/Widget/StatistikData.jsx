@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { getData} from "../API/api";
 
 ChartJS.register(
   CategoryScale,
@@ -25,22 +26,17 @@ const StatistikData = () => {
   const [dataStatistik, setDataStatistik] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `${process.env.VUE_APP_API_URL}/api/getData/${process.env.VUE_APP_OPD_ID}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ req: "Grafik" }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const data = await getData("Grafik");
         const grafikData = data.Grafik.filter(item => item.jenis_file === "Grafik");
         setDataStatistik(grafikData);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const hasLineChartData = dataStatistik.length > 0 && dataStatistik[0]?.excel?.data.length > 0;
@@ -75,7 +71,6 @@ const StatistikData = () => {
     },
   };
   
-
   const renderYearlySummary = () => {
     if (!hasLineChartData) return null;
 
