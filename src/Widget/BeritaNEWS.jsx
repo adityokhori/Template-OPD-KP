@@ -63,7 +63,7 @@ const BeritaNEWS = () => {
   return (
     <div className="w-full lg:w-full">
       <div className="flex flex-row justify-start items-start lg:items-center">
-        <Typography variant="fontH1">Berita Terkini</Typography>
+        <Typography variant="fontH2">Berita Terkini</Typography>
       </div>
       <Link
         to={`/berita/${beritaTerbaru.id}`}

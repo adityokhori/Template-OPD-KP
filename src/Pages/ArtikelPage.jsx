@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Pagination } from "@mui/material";
+import { Box, Typography, Pagination, Divider } from "@mui/material";
 import FooterPage from "./FooterPage";
 import { Link } from "react-router-dom";
 import BeritaNEWS from "../Widget/BeritaNEWS";
@@ -47,7 +47,7 @@ const ArtikelPage = () => {
     <div className="pt-4">
       <div className="w-full flex flex-col lg:flex-row p-20">
         {/* berita */}
-        <div className="w-full lg:w-3/5 ">
+        <div className="w-full lg:w-3/5 p-4">
           <Typography variant="fontH1">Artikel</Typography>
           <div>
             <div>
@@ -102,8 +102,9 @@ const ArtikelPage = () => {
             </Box>
           </div>
         </div>
+        <Divider orientation="vertical" flexItem />
 
-        <div className="w-full lg:w-2/5 pl-8">
+        <div className="w-full lg:w-2/5 pl-4">
           {/* <div>
             <Typography variant="fontH1">Video Terbaru</Typography>
             <div className="flex justify-center items-center border rounded-lg overflow-hidden shadow-lg p-4">

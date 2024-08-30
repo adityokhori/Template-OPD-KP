@@ -12,7 +12,7 @@ import { id } from "date-fns/locale";
 import { useParams } from "react-router-dom";
 import UpcomingEvent from "./UpcomingEvent";
 import EvenBulanIniDetail from "./EvenBulanIniDetail";
-import { Button, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import FooterPage from "../Pages/FooterPage";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -107,7 +107,7 @@ const EvenBulanIni2 = () => {
           </Button>
         </div>
         <div className="flex flex-col lg:flex-row w-full ">
-          <div className="p-2">
+          <div className="p-4">
             <div className="border mt-4">
               <h2 className="text-lg font-bold text-center py-2">
                 {format(
@@ -173,6 +173,7 @@ const EvenBulanIni2 = () => {
               <UpcomingEvent currentMonth={currentMonth} />
             </div>
           </div>
+          <Divider orientation="vertical" flexItem />
 
           <div className="flex-1 p-2">
             {currentMonthEvents.length > 0 ? (

@@ -49,7 +49,7 @@ const PengumumanPage = () => {
     <div className="pt-4">
       <div className="w-full flex flex-col lg:flex-row p-20">
         {/* berita */}
-        <div className="w-3/5">
+        <div className="w-3/5 p-4">
           <Typography variant="fontH1">Pengumuman</Typography>
           <div className="w-full">
             {loading ? (
@@ -69,7 +69,7 @@ const PengumumanPage = () => {
               <div className="flex flex-col gap-4">
                 {newsToDisplay.map((item) => (
                   <Link to={`/pengumuman/${item.id}`} key={item.id}>
-                    <div className="bg-red-300 flex items-center border rounded-lg lg:overflow-hidden shadow-lg p-4 ">
+                    <div className="flex items-center border rounded-lg lg:overflow-hidden shadow-lg p-4 ">
                       <img
                         src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${item.gambar}`}
                         alt={`News ${item.id}`}
@@ -79,7 +79,7 @@ const PengumumanPage = () => {
                         <Typography variant="h6" className="font-bold mb-1">
                           {item.judul_pengumuman}
                         </Typography>
-                        <Typography variant="body2" className="bg-red-100">
+                        <Typography variant="body2">
                           {item.desk_singkat}
                         </Typography>
                       </div>
@@ -100,7 +100,7 @@ const PengumumanPage = () => {
         </div>
         <Divider orientation="vertical" flexItem />
 
-        <div className="w-2/5 pl-8">
+        <div className="w-2/5 pl-4">
           <div>
             <BeritaNEWS />
           </div>

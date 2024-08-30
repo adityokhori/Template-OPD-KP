@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
+import { Box, Typography, Card, CardContent, CardMedia, Divider } from "@mui/material";
 import FooterPage from "./FooterPage";
 import BeritaNEWS from "../Widget/BeritaNEWS";
 import { useParams } from "react-router-dom";
@@ -33,12 +33,13 @@ const PengumumanView = () => {
   return (
     <div className="mt-14 w-full ">
       <div className="flex flex-row p-4">
-        <div className="p-2 w-2/3">
+        <div className="p-4 w-2/3">
           {pengumuman ? (
             <Card
               key={pengumuman.id}
               sx={{ mb: 2, p: 4 }}
-              className="space-y-4"
+              className="space-y-4 shadow-lg" 
+              elevation={3}
             >
               <Typography
                 variant="fontH1"
@@ -90,8 +91,8 @@ const PengumumanView = () => {
             </Typography>
           )}
         </div>
-
-        <div className="w-1/3 pl-8">
+          <Divider orientation="vertical" flexItem />
+        <div className="w-1/3 pl-4">
           <div className=" mt-4">
             <BeritaNEWS2 />
             <PengumumanLainnya id={id}/>

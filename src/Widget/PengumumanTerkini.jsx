@@ -82,7 +82,7 @@ const BeritaNEWS2 = () => {
             <h2 className="text-xl font-bold mb-2">
               {beritaTerbaru.judul_pengumuman}
             </h2>
-            <p className="text-gray-700 text-base">{beritaTerbaru.desk_singkat}</p>
+            <p className="text-gray-700 text-base line-clamp-3">{beritaTerbaru.desk_singkat}</p>
           </div>
         </div>
       </Link>

@@ -22,10 +22,10 @@ const PengumumanLainnya = ({ id }) => {
 
   return (
     <div className="mt-8">
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="fontH2" gutterBottom>
         Daftar Pengumuman Lainnya
       </Typography>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper}  elevation={3}>
         <Table>
           <TableHead>
             <TableRow>

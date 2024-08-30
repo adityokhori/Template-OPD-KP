@@ -33,7 +33,7 @@ const GalleryPage = () => {
 
     fetchData();
   }, []);
-  
+
   const toggleViewMode = () => {
     setViewMode(viewMode === "gallery" ? "list" : "gallery");
   };
@@ -69,11 +69,13 @@ const GalleryPage = () => {
             {GAlbumData.map((album) => (
               <Link to={`/gallery/${album.id}`} key={album.id}>
                 <div className="border rounded-lg overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-300">
-                  <img
-                    src={`${process.env.VUE_APP_API_URL}/image/posting/galeri/${process.env.VUE_APP_OPD_ID}/original/${album.gambar}`}
-                    alt={album.judul_album}
-                    className="w-full h-auto object-cover"
-                  />
+                  {album.gambar && (
+                    <img
+                      src={`${process.env.VUE_APP_API_URL}/image/posting/galeri/${process.env.VUE_APP_OPD_ID}/original/${album.gambar}`}
+                      alt={album.judul_album}
+                      className="w-full h-auto object-cover"
+                    />
+                  )}
                   <div className="p-4">
                     <Typography variant="h6" className="font-bold mb-2">
                       {album.judul_album}

@@ -69,7 +69,7 @@ const Berita = () => {
         </div>
         <Divider orientation="vertical" flexItem />
 
-        <div className="w-full lg:w-2/5 ml-0 lg:ml-4 p-4 lg:pt-4 ">
+        <div className="w-full lg:w-2/5 p-4 lg:pt-4 ">
           <div className="pt-8 lg:pt-0">
             <div className="pb-4">
               <Typography variant="fontH2">Berita Lainnya</Typography>

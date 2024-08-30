@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Typography, Container } from "@mui/material";
+import { Box, Typography, Container, Divider } from "@mui/material";
 import FooterPage from "./FooterPage";
 import BeritaHorizontal from "../Widget/BeritaHorizontal";
 import BeritaPopuler from "../Widget/BeritaPopuler";
@@ -79,6 +79,8 @@ const BeritaView = () => {
             </Typography>
             <br />
           </div>
+        <Divider orientation="vertical" flexItem />
+
           <div className="w-1/3">
             <BeritaPopuler />
           </div>
