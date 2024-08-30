@@ -92,7 +92,7 @@ const PengumumanView = () => {
         </div>
 
         <div className="w-1/3 pl-8">
-          <div>
+          <div className=" mt-4">
             <BeritaNEWS2 />
             <PengumumanLainnya id={id}/>
           </div>

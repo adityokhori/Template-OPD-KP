@@ -47,7 +47,7 @@ const PengumumanPage = () => {
 
   return (
     <div className="pt-4">
-      <div className="w-full flex flex-row p-20">
+      <div className="w-full flex flex-col lg:flex-row p-20">
         {/* berita */}
         <div className="w-3/5">
           <Typography variant="fontH1">Pengumuman</Typography>
@@ -69,17 +69,17 @@ const PengumumanPage = () => {
               <div className="flex flex-col gap-4">
                 {newsToDisplay.map((item) => (
                   <Link to={`/pengumuman/${item.id}`} key={item.id}>
-                    <div className="flex items-center border rounded-lg overflow-hidden shadow-lg p-4">
+                    <div className="bg-red-300 flex items-center border rounded-lg lg:overflow-hidden shadow-lg p-4 ">
                       <img
                         src={`${process.env.VUE_APP_API_URL}image/posting/pengumuman/${process.env.VUE_APP_OPD_ID}/original/${item.gambar}`}
                         alt={`News ${item.id}`}
                         className="w-32 h-24 object-cover mr-4"
                       />
-                      <div className="flex-1">
+                      <div className="lg:flex-1">
                         <Typography variant="h6" className="font-bold mb-1">
                           {item.judul_pengumuman}
                         </Typography>
-                        <Typography variant="body2">
+                        <Typography variant="body2" className="bg-red-100">
                           {item.desk_singkat}
                         </Typography>
                       </div>
